@@ -1,0 +1,132 @@
+/* body */
+
+
+.content__body--image {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.content__body--image span {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--color-backfunc);
+}
+
+.content__publication {
+  display: block;
+  background-color: var(--light-gray);
+  width: 100%;
+  border-radius: 10px;
+  padding: 7.5px 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin-bottom: 24px;
+  transition: transform 0.25s ease 0s, box-shadow 0.25s ease 0s;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+}
+
+.content__publication:hover {
+  transform: translateY(-2px);
+}
+
+.content__publication--title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--color-primary);
+  margin-bottom: 10px;
+}
+
+.content__publication--description {
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--color-backfunc);
+  margin-bottom: 10px;
+  text-align: justify;
+}
+
+.content__publication--info {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.publication__info--curso > span {
+  display: none;
+}
+
+.publication__info--curso,
+.publication__info--comment,
+.publication__info--time,
+.publication__info--user {
+  height: 51px;
+  padding: 3px;
+  display: flex;
+  align-items: center;
+  font-size: 1.3rem;
+}
+
+.publication__info--curso > span,
+.publication__info--comment > span,
+.publication__info--time > span,
+.publication__info--user > span {
+  padding-left: 6px;
+}
+
+.publication__info--curso {
+  text-transform: uppercase;
+  position: absolute;
+  left: 15px;
+}
+
+.publication__info--comment {
+  text-transform: capitalize;
+}
+
+.publication__info--user {
+  text-transform: capitalize;
+}
+
+@media (min-width: 768px) {
+  .content__body {
+    width: 80%;
+    padding-top: 56px;
+    padding-bottom: 0;
+  }
+
+  .content__body--image {
+    width: 400px;
+    flex-direction: row;
+    text-align: left;
+    height: calc(100vh - 142px);
+  }
+
+  .content__publication {
+    padding: 15px 30px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  }
+
+  .content__publication--description {
+    font-size: 1.5rem;
+  }
+
+  .publication__info--curso,
+  .publication__info--comment,
+  .publication__info--time,
+  .publication__info--user {
+    padding: 12px;
+    font-size: 1.6rem;
+  }
+
+  .publication__info--curso {
+    position: initial;
+  }
+
+  .publication__info--curso > span {
+    display: block;
+  }
+}
