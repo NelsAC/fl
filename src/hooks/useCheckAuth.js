@@ -4,10 +4,14 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { firebaseAuth } from '../firebase/config';
 import { login, logout } from '../store/auth';
 import { startLoadingPosts } from "../store/learning";
+import { startLoadingComments } from "../store/comment";
 
 
 export const useCheckAuth = () => {
     const { status } = useSelector( state => state.auth );
+
+    const { loading } = useSelector( state => state.learning );
+
     const dispatch = useDispatch();
   
     useEffect(() => {
@@ -20,5 +24,8 @@ export const useCheckAuth = () => {
       })
     }, [])
 
-    return status;
+    return {
+      status,
+      loading
+    };
 }

@@ -3,6 +3,7 @@ import { CoursesView, NavBarCursosView } from "../views";
 
 
 export const CursosPage = () => {
+  console.log(new Date());
   return (
     <FastLearningLayout>
       {/* navbar curso */}

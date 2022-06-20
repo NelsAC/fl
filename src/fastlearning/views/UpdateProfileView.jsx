@@ -1,10 +1,10 @@
 
-
-import "./profile.css";
-import photo from "../../assets/images/photo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "../../hooks";
 import { startUpdateUser } from "../../store/user/thunk";
+
+import "./styles/profile.css";
+import photo from "../../assets/images/photo.png";
 
 export const UpdateProfileView = ({ photoFB, setVisible }) => {
   const { displayName, email: emailUser } = useSelector((state) => state.auth);

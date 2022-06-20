@@ -7,8 +7,8 @@ import logoMobile from '../../assets/images/logomobile.png';
 import photo from '../../assets/images/photo.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { startLogout } from '../../store/auth';
-import { Modal } from './Modal';
 import { NewPostView, UpdateProfileView } from '../views';
+import { Modal } from './Modal';
 
 export const Sidebar = () => {
 
@@ -106,7 +106,7 @@ export const Sidebar = () => {
           setVisible={ setModalProfile }
         />
       </Modal>
-      <Modal 
+      <Modal
         title="Nueva Publicación"
         visible={ modalNewPost }
         setVisible={ setModalNewPost }

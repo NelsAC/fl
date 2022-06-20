@@ -1,35 +1,80 @@
-import './publication.css';
+import { useMemo } from 'react';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { setActivePost } from '../../store/learning';
+import './styles/publication.css';
+import { setActiveComments } from '../../store/comment';
 
-export const PublicationView = () => {
+export const PublicationView = ({ post }) => {
+
+  const dispatch = useDispatch();
+
+  const { comments } = useSelector(state => state.comment);
+   
+  const { title = '', course, body: description, date, displayName, id } = post;
+
+  const onClickPost = () => {
+    dispatch(setActivePost(post));
+    dispatch(setActiveComments());
+  }
+
+  const dateBefore = useMemo(() => {
+    return new Date().getHours() - new Date(date).getHours();
+  }, [date]);
+
+  const newTitle = useMemo(() => {
+    return title.length > 50
+      ? title.substring(0, 50) + '...'
+      : title;
+  }, [title])
+
+  const newDescription = useMemo(() => {
+    return description.length > 150
+      ? description.substring(0, 150) + '...'
+      : description;
+  }, [description])
+
+  let courseIcon = '';
+  switch (course) {
+    case 'programación':
+      courseIcon = 'fa-solid fa-code';
+      break;
+    case 'diseño':
+      courseIcon = 'fa-solid fa-compass-drafting';
+      break;
+    case 'datos':
+      courseIcon = 'fa-solid fa-database';
+      break;
+  };
+
   return (
-    <div className="content__body--publications">
-    <a className="content__publication" href="foro.html">
-      <h2 className="content__publication--title">Pregunta</h2>
-      <p className="content__publication--description">
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-        Molestiae ipsum, nobis amet officia quasi, corrupti eum, est iste
-        facilis rerum nostrum repudiandae natus expedita voluptates fugit.
-        Maxime accusamus error expedita...
-      </p>
-      <div className="content__publication--info">
-        <div className="publication__info--curso">
-          <i className="fa-solid fa-code"></i>
-          <span>programación</span>
+
+    <div className="content__body--publications" onClick={onClickPost}>
+      <Link className="content__publication" to={`/post/${ id }`}>
+        <h2 className="content__publication--title">{newTitle}</h2>
+        <p className="content__publication--description">
+          {newDescription}
+        </p>
+        <div className="content__publication--info">
+          <div className="publication__info--curso">
+            <i className={`${courseIcon}`}></i>
+            <span>{course}</span>
+          </div>
+          <div className="publication__info--comment">
+            <i className="fa-solid fa-comment"></i>
+            <span>{comments.length}</span>
+          </div>
+          <div className="publication__info--time">
+            <i className="fa-solid fa-clock"></i>
+            {/* <span>Hace 4 horas</span> */}
+            <span>{`Hace ${ dateBefore } ${ dateBefore !== 1 ? 'horas' : 'hora' }`}</span>
+          </div>
+          <div className="publication__info--user">
+            <i className="fa-solid fa-user"></i>
+            <span>{displayName}</span>
+          </div>
         </div>
-        <div className="publication__info--comment">
-          <i className="fa-solid fa-comment"></i>
-          <span>2</span>
-        </div>
-        <div className="publication__info--time">
-          <i className="fa-solid fa-clock"></i>
-          <span>Hace 4 horas</span>
-        </div>
-        <div className="publication__info--user">
-          <i className="fa-solid fa-user"></i>
-          <span>Usuario</span>
-        </div>
-      </div>
-    </a>
-  </div>
+      </Link>
+    </div>
   )
 }

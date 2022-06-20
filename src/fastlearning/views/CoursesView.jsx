@@ -1,7 +1,7 @@
 import code from "../../assets/images/code.jpg";
 import design from "../../assets/images/design.jpg";
 import bd from "../../assets/images/bd.jpg";
-import './courses.css';
+import './styles/courses.css';
 
 export const CoursesView = () => {
   return (

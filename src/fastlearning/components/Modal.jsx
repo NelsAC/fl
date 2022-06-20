@@ -1,4 +1,3 @@
-import { UpdateProfileView } from "../views";
 import "./modal.css";
 
 export const Modal = ({ children, title, visible, setVisible }) => {

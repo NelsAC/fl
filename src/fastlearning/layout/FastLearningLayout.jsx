@@ -1,6 +1,6 @@
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import Swal from "sweetalert2";
+// import { useEffect } from "react";
+// import { useSelector } from "react-redux";
+// import Swal from "sweetalert2";
 
 import 'sweetalert2/dist/sweetalert2.css';
 import { Sidebar } from "../components";
@@ -9,21 +9,25 @@ import './layout.css';
 
 export const FastLearningLayout = ({ children }) => {
 
-  const { messageSaved } = useSelector((state) => state.user);
+  // const { messageSaved: messageSavedUser } = useSelector((state) => state.user);
 
-  useEffect(() => {
-    if (messageSaved.length > 0) {
-      Swal.fire('Datos actualizados', messageSaved,'success');
-    }
-  }, [messageSaved])
+  // useEffect(() => {
+  //   if (messageSavedUser.length > 0) {
+  //     Swal.fire('Datos actualizados', messageSavedUser,'success');
+  //   }
+  //   console.log(messageSavedUser);
+  // }, [messageSavedUser])
 
-  const { posts } = useSelector((state) => state.learning);
+  // const { messageSaved } = useSelector((state) => state.learning);
 
-  useEffect(() => {
-    if (posts.length > 0) {
-      Swal.fire('Nueva publicación', 'La publicación fue creada correctamente','success');
-    }
-  }, [posts])
+  
+
+  // useEffect(() => {
+  //   if (messageSaved.length > 0) {
+  //     Swal.fire('Nueva publicación', messageSaved,'success');
+  //     console.log(messageSaved.length);
+  //   }
+  // }, [messageSaved])
 
   return (
     <>

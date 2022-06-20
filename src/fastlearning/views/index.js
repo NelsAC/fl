@@ -6,3 +6,4 @@ export * from './PublicationView';
 export * from './CoursesView';
 export * from './UpdateProfileView';
 export * from './NewPostView';
+export * from './ForoView';

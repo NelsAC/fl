@@ -1,5 +1,5 @@
 import vacio from '../../assets/images/vacio.png';
-import './publication.css';
+import './styles/publication.css';
 
 export const NothingPublicationView = () => {
   return (
