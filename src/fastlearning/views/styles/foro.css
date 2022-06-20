@@ -1,0 +1,124 @@
+.content__foro--header {
+  padding: 10px 0;
+}
+
+.foro__header--time {
+  margin: 12px 0;
+}
+
+.foro__header--title {
+  margin: 12px 0;
+  font-size: 3rem;
+  font-weight: bold;
+  text-transform: capitalize;
+  overflow-wrap: break-word;
+}
+
+.foro__header--user {
+  display: flex;
+  align-items: center;
+}
+
+.foro__header--userImg {
+  margin: 12px 10px 12px 0;
+  width: 35px;
+  height: 35px;
+  background: var(--color-backfunc);
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.foro__header--userText {
+  text-transform: capitalize;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--color-backfunc);
+}
+
+.content__foro--body {
+  padding: 20px 0;
+}
+
+.foro__body--description {
+  font-size: 1.4rem;
+  line-height: 1.9;
+  overflow-wrap: break-word;
+}
+
+@media (min-width: 768px) {
+  .foro__body--description {
+    font-size: 1.8rem;
+  }
+}
+
+.content__foro--newComment,
+.content__foro--comments {
+  width: 98%;
+  margin: 20px auto;
+  padding: 20px 0;
+}
+
+@media (min-width: 768px) {
+  .content__foro--newComment,
+  .content__foro--comments {
+    width: 80%;
+  }
+}
+
+.content__foro--newComment {
+  border-bottom: 1px solid #d3bfee;
+}
+
+.content__foro--newComment > p,
+.content__foro--comments > p {
+  font-size: 1.7rem;
+  color: var(--color-backfunc);
+  font-weight: bold;
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+.content__foro--newComment.foro-model {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-top: 20px;
+}
+
+.content__foro--entryComment {
+  display: block;
+  border-radius: 5px;
+  height: 100px;
+  width: 100%;
+  padding: 10px;
+  resize: none;
+  background: #d3bfee;
+  border: 1px solid var(--color-primary);
+}
+
+.content__foro--entryComment:focus {
+  outline: none;
+}
+
+.content__foro--btn {
+  width: 100%;
+  margin-top: 15px;
+  border: 1px solid var(--color-primary);
+  border-radius: 5px;
+  padding: 10px;
+  background: var(--color-primary);
+  font-size: 1.7rem;
+  color: var(--light-gray);
+  transition: background 0.2s ease;
+}
+
+@media (min-width: 768px) {
+  .content__foro--btn {
+    width: 25%;
+  }
+}
+
+.content__foro--btn:hover {
+  background: #5500cc;
+  cursor: pointer;
+}
