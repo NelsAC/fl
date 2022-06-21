@@ -25,7 +25,10 @@ export const commentSlice = createSlice({
     },
     setSaving: (state, actions) => {
       state.isSaving = true;
-    }
+    },
+    setAllComments: (state, actions) => {
+      state.comments = actions.payload;
+    },
   },
 });
 
@@ -35,4 +38,5 @@ export const {
   setComments,
   setActiveComments,
   setSaving,
+  setAllComments,
 } = commentSlice.actions;

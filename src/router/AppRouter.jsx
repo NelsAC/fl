@@ -9,7 +9,7 @@ export const AppRouter = () => {
   const {loading, status} = useCheckAuth();
   
 
-  if ( status === 'checking' || !!loading ) {
+  if ( status === 'checking' ) {
     return <CheckingAuth />
   }
   

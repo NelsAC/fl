@@ -2,25 +2,43 @@ import { collection, getDocs } from "firebase/firestore/lite";
 import { firebaseDB } from "../firebase/config";
 
 export const loadComments = async (id) => {
+  // const { active: post } = useSelector( state => state.learning );
 
-    // const { active: post } = useSelector( state => state.learning );
+  // console.log(post);
 
-    // console.log(post);
+  // return;
 
-    // return;
+  const collectionRef = collection(
+    firebaseDB,
+    `FL2022/learning/posts/${id}/comments`
+  );
+  const docs = await getDocs(collectionRef);
 
-    const collectionRef = collection( firebaseDB, `FL2022/learning/posts/${ id }/comments` );
-    const docs = await getDocs(collectionRef);
-
-    const comments = [];
-    docs.forEach( doc => {
-        comments.push({
-            id: doc.id,
-            ...doc.data(),
-        });
+  const comments = [];
+  docs.forEach((doc) => {
+    comments.push({
+      id: doc.id,
+      ...doc.data(),
     });
+  });
 
-    console.log(comments);
+  return comments;
+};
 
-    return comments;
-}
+export const loadAllComments = async (id) => {
+  const collectionRef = collection(
+    firebaseDB,
+    `FL2022/learning/posts/${id}/comments`
+  );
+  const docs = await getDocs(collectionRef);
+
+  const allComments = [];
+  docs.forEach((doc) => {
+    allComments.push({
+      id: doc.id,
+      ...doc.data(),
+    });
+  });
+
+  return allComments;
+};

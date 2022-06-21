@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import './sidebar.css';
@@ -9,6 +9,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { startLogout } from '../../store/auth';
 import { NewPostView, UpdateProfileView } from '../views';
 import { Modal } from './Modal';
+import { ProgressBar } from './ProgressBar';
+import Swal from 'sweetalert2';
+import 'sweetalert2/dist/sweetalert2.css';
 
 export const Sidebar = () => {
 
@@ -20,6 +23,8 @@ export const Sidebar = () => {
   const { photoURL, displayName, email } = useSelector(state => state.auth);
 
   const { messageSaved, nameUser } = useSelector((state) => state.user);
+
+  const { messageSaved: messageNewPost } = useSelector((state) => state.learning);
 
 
   const onLogout = () => {
@@ -33,6 +38,18 @@ export const Sidebar = () => {
   const onModalNewPost = () => {
     setModalNewPost(true);
   }
+
+  useEffect(() => {
+    if ( messageNewPost.length > 0 ) {
+      Swal.fire({
+        title: '¡Listo!',
+        text: messageNewPost,
+        icon: 'success',
+        confirmButtonText: 'Ok'
+      });
+    }
+  }, [messageNewPost])
+  
 
   return (
     <>
@@ -94,6 +111,7 @@ export const Sidebar = () => {
               <p>Publicar</p>
             </span>
           </div>
+          <ProgressBar correctComments={10} />
         </div>
       </aside>
       <Modal 

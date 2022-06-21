@@ -5,7 +5,7 @@ export const Modal = ({ children, title, visible, setVisible }) => {
     <>
       {visible && (
         <div className="modal">
-          <div className="modal__content animate__animated animate__fadeInDown animate__faster">
+          <div className="modal__content animate__animated animate__fadeIn">
             <div className="modal__content--title">
               <h2>{title}</h2>
               <span 

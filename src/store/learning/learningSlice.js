@@ -8,17 +8,6 @@ export const learningSlice = createSlice({
     messageSaved: "",
     posts: [],
     active: null,
-    // active : {
-    //     id: 'AB1',
-    //     course: '',
-    //     title: '',
-    //     body: '',
-    //     date: 12345,
-    //     user: {
-    //         id: null,
-    //         name: '',
-    //     }
-    // }
   },
   reducers: {
     addNewEmptyPost: (state, actions) => {
@@ -37,6 +26,7 @@ export const learningSlice = createSlice({
     },
     setSaving: (state, actions) => {
       state.isSaving = true;
+      state.messageSaved = "";
     },
     updatePost: (state, actions) => {
       state.isSaving = false;

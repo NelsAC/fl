@@ -1,4 +1,6 @@
 import { logoutFirebase, registerWithEmailAndPassword, signInWithEmailPassword, signInWithGoogle } from "../../firebase/providers";
+import { fileUpload } from "../../helpers";
+import { setSaving } from "../learning";
 import { checkingCredentials, login, logout } from "./authSlice";
 
 
@@ -45,5 +47,13 @@ export const startLogout = () => {
     return async ( dispatch ) => {
         await logoutFirebase();
         dispatch( logout() );
+    }
+}
+
+export const startUpdatePhotoURL = (files = []) => {
+    return async ( dispatch ) => {
+        dispatch( setSaving() );
+
+        await fileUpload( files[0] )
     }
 }

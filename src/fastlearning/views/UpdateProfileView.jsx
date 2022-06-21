@@ -5,8 +5,14 @@ import { startUpdateUser } from "../../store/user/thunk";
 
 import "./styles/profile.css";
 import photo from "../../assets/images/photo.png";
+import { useRef } from "react";
+import { startUpdatePhotoURL } from "../../store/auth";
 
 export const UpdateProfileView = ({ photoFB, setVisible }) => {
+
+  const fileInputRef = useRef();
+
+
   const { displayName, email: emailUser } = useSelector((state) => state.auth);
   let { nameUser } = useSelector((state) => state.user);
 
@@ -36,6 +42,13 @@ export const UpdateProfileView = ({ photoFB, setVisible }) => {
     setVisible(false);
   }
 
+  const onFileInputChange = ({ target }) => {
+
+    if ( target.files === 0 ) return;
+
+    dispatch( startUpdatePhotoURL( target.files ) );
+  }
+
 
   return (
     <>
@@ -49,12 +62,12 @@ export const UpdateProfileView = ({ photoFB, setVisible }) => {
         <input
           type="file"
           className="upload"
-          id="imageUpload"
-          accept=".png, .jpg, .jpeg"
+          ref={ fileInputRef }
+          onChange={ onFileInputChange }
         />
-        <label htmlFor="imageUpload" className="upload-label">
+        <div className="upload-label" onClick={ ()=> fileInputRef.current.click() }>
           <i className="fa-solid fa-camera"></i>
-        </label>
+        </div>
       </div>
       <div className="modal__content--rol">
         <i className="fa-solid fa-graduation-cap"></i>
