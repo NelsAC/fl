@@ -1,11 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 export const learningSlice = createSlice({
-  name: "learning",
+  name: 'learning',
   initialState: {
     isSaving: false,
     loading: true, 
-    messageSaved: "",
+    messageSaved: '',
     posts: [],
     active: null,
   },
@@ -13,12 +13,12 @@ export const learningSlice = createSlice({
     addNewEmptyPost: (state, actions) => {
       state.posts.push(actions.payload);
       state.isSaving = false;
-      state.messageSaved = "Post creado correctamente";
+      state.messageSaved = 'Post creado correctamente';
       state.active = null;
     },
     setActivePost: (state, actions) => {
       state.active = actions.payload;
-      state.messageSaved = "";
+      state.messageSaved = '';
     },
     setPosts: (state, actions) => {
       state.posts = actions.payload;
@@ -26,7 +26,7 @@ export const learningSlice = createSlice({
     },
     setSaving: (state, actions) => {
       state.isSaving = true;
-      state.messageSaved = "";
+      state.messageSaved = '';
     },
     updatePost: (state, actions) => {
       state.isSaving = false;

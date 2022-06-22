@@ -1,33 +1,43 @@
-import { useMemo } from "react";
-import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { setActivePost } from "../../store/learning";
-import "./styles/publication.css";
-import { setActiveComments } from "../../store/comment";
+import { useMemo } from 'react';
 
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { setActivePost } from '../../store/learning';
+import { setActiveComments } from '../../store/comment';
+
+import './styles/publication.css';
 import photo from '../../assets/images/photo.png';
 
 export const PublicationView = ({ post }) => {
+
   const dispatch = useDispatch();
 
   const { comments } = useSelector((state) => state.comment);
   
-  const { title = "", course, body: description, date, displayName, id, photoURL } = post;
+  const { 
+    title = '', 
+    course, 
+    body: description, 
+    date, 
+    displayName, 
+    id, 
+    photoURL
+  } = post;
 
   const onClickPost = () => {
-    dispatch(setActivePost(post));
-    dispatch(setActiveComments());
+    dispatch( setActivePost(post) );
+    dispatch( setActiveComments() );
   };
 
   const dateBefore = useMemo(() => {
-    return new Date().getHours() - new Date(date).getHours();
+    return new Date().getHours() - new Date( date ).getHours();
   }, [date]);
 
   const newTitle = useMemo(() => {
-    return title.length > 50 ? title.substring(0, 50) + "..." : title;
+    return title.length > 50 ? title.substring(0, 50) + '...' : title;
   }, [title]);
 
-  const newDescription = useMemo(() => {
+  const newDescription = useMemo( () => {
     return description.length > 150
       ? description.substring(0, 150) + "..."
       : description;
@@ -59,11 +69,8 @@ export const PublicationView = ({ post }) => {
           <div className="publication__info--comment">
             <i className="fa-solid fa-comment"></i>
             <span>
-              {
-                comments.filter((comment) => comment.postId === id).length
-              }
+              {comments.filter((comment) => comment.postId === id).length}
             </span>
-
           </div>
           <div className="publication__info--time">
             <i className="fa-solid fa-clock"></i>
@@ -73,16 +80,16 @@ export const PublicationView = ({ post }) => {
             }`}</span>
           </div>
           <div className="publication__info--user">
-          <div className="foro__header--userImg">
-                    <div
-                      className="photo-user"
-                      style={{
-                        backgroundImage: `url(${
-                          photoURL === null ? photo : photoURL
-                        })`,
-                      }}
-                    ></div>
-                  </div>
+            <div className="foro__header--userImg">
+              <div
+                className="photo-user"
+                style={{
+                  backgroundImage: `url(${
+                    photoURL === null ? photo : photoURL
+                  })`,
+                }}
+              ></div>
+            </div>
             <span>{displayName}</span>
           </div>
         </div>

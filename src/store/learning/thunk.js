@@ -1,7 +1,7 @@
-import { doc, collection, setDoc } from "firebase/firestore/lite";
-import { firebaseDB } from "../../firebase/config";
-import { addNewEmptyPost, setPosts } from "./learningSlice";
-import { loadPosts } from "../../helpers";
+import { doc, collection, setDoc } from 'firebase/firestore/lite';
+import { firebaseDB } from '../../firebase/config';
+import { addNewEmptyPost, setPosts } from './learningSlice';
+import { loadPosts } from '../../helpers';
 
 export const startNewPost = ({ course, title, description }) => {
   return async (dispatch, getState) => {

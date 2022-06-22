@@ -1,7 +1,9 @@
-import { useDispatch, useSelector } from "react-redux";
-import { startLoadingAllComments } from "../../store/comment";
-import { CheckingAuth } from "../../ui/components/CheckingAuth";
-import { FastLearningLayout } from "../layout/FastLearningLayout";
+import { useDispatch, useSelector } from 'react-redux';
+
+import { CheckingAuth } from '../../ui/components/CheckingAuth';
+import { startLoadingAllComments } from '../../store/comment';
+import { FastLearningLayout } from '../layout/FastLearningLayout';
+
 import {
   NavBarInicioView,
   NothingPublicationView,
@@ -11,25 +13,28 @@ import {
 export const FastLearningPage = () => {
   const dispatch = useDispatch();
 
-  const { loading, posts } = useSelector((state) => state.learning);
+  const { loading, posts } = useSelector( (state) => state.learning );
 
-  if (!!loading) {
+  if ( !!loading ) {
     return <CheckingAuth />;
   }
 
-  dispatch(startLoadingAllComments());
+  dispatch( startLoadingAllComments() );
 
   return (
     <FastLearningLayout>
-      {/* navbar inicio */}
       <NavBarInicioView />
-
       <div className="content__body">
-        {posts.length > 0 ? (
-          posts.map((post) => <PublicationView key={post.id} post={post} />)
-        ) : (
-          <NothingPublicationView />
-        )}
+        {
+          posts.length > 0 
+            ? ( posts.map((post) => 
+                <PublicationView 
+                  key={post.id} 
+                  post={post} 
+                />)
+              )
+            : ( <NothingPublicationView /> )
+        }
       </div>
     </FastLearningLayout>
   );

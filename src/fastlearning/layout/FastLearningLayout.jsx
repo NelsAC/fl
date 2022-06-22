@@ -1,5 +1,5 @@
-import "sweetalert2/dist/sweetalert2.css";
 import { Sidebar } from "../components";
+
 import "./layout.css";
 
 export const FastLearningLayout = ({ children }) => {
@@ -7,7 +7,9 @@ export const FastLearningLayout = ({ children }) => {
     <>
       <Sidebar />
 
-      <div className="content animate__animated animate__fadeIn">
+      <div 
+        className="content animate__animated animate__fadeIn"
+      >
         {children}
       </div>
     </>

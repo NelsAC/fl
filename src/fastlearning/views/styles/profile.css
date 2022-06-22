@@ -57,7 +57,7 @@
     filter: brightness(80%);
   }
   
-  .modal__content--photo {
+  /* .modal__content--photo {
     margin: 30px auto 30px;
     width: 120px;
     height: 120px;
@@ -92,7 +92,7 @@
     left: 50%;
     transform: translate(-50%, 0);
     color: var(--light-gray);
-  }
+  } */
   
   .modal__content--rol {
     display: flex;

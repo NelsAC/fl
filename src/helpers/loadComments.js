@@ -1,13 +1,7 @@
-import { collection, getDocs } from "firebase/firestore/lite";
-import { firebaseDB } from "../firebase/config";
+import { collection, getDocs } from 'firebase/firestore/lite';
+import { firebaseDB } from '../firebase/config';
 
 export const loadComments = async (id) => {
-  // const { active: post } = useSelector( state => state.learning );
-
-  // console.log(post);
-
-  // return;
-
   const collectionRef = collection(
     firebaseDB,
     `FL2022/learning/posts/${id}/comments`

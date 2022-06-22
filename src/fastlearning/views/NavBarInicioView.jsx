@@ -5,6 +5,7 @@ export const NavBarInicioView = () => {
     <div className="content__header">
       <h1 className="content__header--title">Inicio</h1>
       <div className="content__header--filter">
+        {/* TODO: Falta darle funcionalidad */}
         <span className="active">Tus publicaciones</span>
         <span>Todas las publicaciones</span>
       </div>

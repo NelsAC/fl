@@ -1,7 +1,6 @@
-import React from "react";
+import "./styles/commentItem.css";
 
-import photo from '../../assets/images/photo.png';
-import './comment.css';
+import photo from "../../assets/images/photo.png";
 
 export const CommentItem = ({ comment }) => {
 
@@ -19,18 +18,24 @@ export const CommentItem = ({ comment }) => {
             <div className="comment__body--userImg">
               <div
                 className="photo-user"
-                style={{ backgroundImage: `url(${ ( photoURL === null ) ? photo : photoURL })` }}
+                style={{
+                  backgroundImage: `url(${
+                    photoURL === null 
+                      ? photo 
+                      : photoURL
+                  })`
+                }}
               ></div>
             </div>
-            <p className="comment__body--userText">{ displayName }</p>
+            <p className="comment__body--userText">{displayName}</p>
           </div>
           <div className="comment__time">
             <i className="fa-solid fa-clock"></i>
-            <span>{ date }</span>
+            <span>{date}</span>
           </div>
         </div>
         <div className="comment__body--description">
-          <p>{ description }</p>
+          <p>{description}</p>
         </div>
       </div>
     </div>

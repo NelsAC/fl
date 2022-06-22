@@ -3,10 +3,10 @@ import {
   setAllComments,
   setComments,
   setSaving,
-} from "./commentSlice";
-import { doc, collection, setDoc } from "firebase/firestore/lite";
-import { loadAllComments, loadComments } from "../../helpers";
-import { firebaseDB } from "../../firebase/config";
+} from './commentSlice';
+import { doc, collection, setDoc } from 'firebase/firestore/lite';
+import { loadAllComments, loadComments } from '../../helpers';
+import { firebaseDB } from '../../firebase/config';
 
 export const startSaveComment = ({ commentDescription }) => {
   return async (dispatch, getState) => {
@@ -61,6 +61,6 @@ export const startLoadingAllComments = () => {
         allCommentsArray.push(comment);
       });
     });
-    dispatch(setAllComments(allCommentsArray));
+    dispatch( setAllComments(allCommentsArray) );
   };
 };

@@ -1,4 +1,4 @@
-import "./modal.css";
+import "./styles/modal.css";
 
 export const Modal = ({ children, title, visible, setVisible }) => {
   return (
@@ -11,7 +11,9 @@ export const Modal = ({ children, title, visible, setVisible }) => {
               <span 
                 className="modal__close--profile"
                 onClick={ () => setVisible(false) }
-                >&times;</span>
+              >
+                &times;
+              </span>
             </div>
             { children }
           </div>

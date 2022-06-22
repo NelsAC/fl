@@ -1,5 +1,4 @@
-import { useState } from "react";
-import "./progressBar.css";
+import "./styles/progressBar.css";
 
 export const ProgressBar = ({ correctComments = 2 }) => {
 
@@ -17,7 +16,9 @@ export const ProgressBar = ({ correctComments = 2 }) => {
         // style="--value:65"
         >
       </div>
-          <span className="progress__bar--description">Para el siguiente nivel</span>
+          <span className="progress__bar--description">
+            Para el siguiente nivel
+          </span>
       </div>
     </>
   );

@@ -1,11 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 export const commentSlice = createSlice({
-  name: "comment",
+  name: 'comment',
   initialState: {
     isSaving: false,
     loadingComments: false,
-    messageSaved: "",
+    messageSaved: '',
     comments: [],
     active: null,
   },
@@ -13,7 +13,7 @@ export const commentSlice = createSlice({
     addNewComment: (state, actions) => {
       state.comments.push(actions.payload);
       state.isSaving = false;
-      state.messageSaved = "Comentario sumado correctamente";
+      state.messageSaved = 'Comentario sumado correctamente';
       state.active = null;
     },
     setActiveComments: (state, actions) => {

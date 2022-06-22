@@ -1,7 +1,8 @@
+import './styles/courses.css';
+
 import code from "../../assets/images/code.jpg";
 import design from "../../assets/images/design.jpg";
 import bd from "../../assets/images/bd.jpg";
-import './styles/courses.css';
 
 export const CoursesView = () => {
   return (
@@ -24,7 +25,7 @@ export const CoursesView = () => {
           <button className="content__curso--btn">Ir a preguntas</button>
         </div>
         <div className="content__curso--img even">
-          <img src={code} />
+          <img src={ code } />
         </div>
       </div>
       <div className="content__curso">
@@ -45,7 +46,7 @@ export const CoursesView = () => {
           <button className="content__curso--btn">Ir a preguntas</button>
         </div>
         <div className="content__curso--img odd">
-          <img src={design} />
+          <img src={ design } />
         </div>
       </div>
       <div className="content__curso">
@@ -66,7 +67,7 @@ export const CoursesView = () => {
           <button className="content__curso--btn">Ir a preguntas</button>
         </div>
         <div className="content__curso--img even">
-          <img src={bd} />
+          <img src={ bd } />
         </div>
       </div>
     </div>

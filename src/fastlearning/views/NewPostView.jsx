@@ -1,30 +1,33 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useForm } from "../../hooks";
-import { startNewPost } from "../../store/learning";
-import "./styles/profile.css";
+import { useState } from 'react';
+
+import { useDispatch } from 'react-redux';
+import { useForm } from '../../hooks';
+import { startNewPost } from '../../store/learning';
+
+import './styles/profile.css';
 
 const formData = {
-  course: "diseño",
-  title: "",
-  description: "",
+  course: 'diseño',
+  title: '',
+  description: '',
 };
 
 const formValidations = {
   title: [
     (value) => value.length >= 3,
-    "El titulo debe tener almenos 3 caracteres.",
+    'El titulo debe tener almenos 3 caracteres.',
   ],
   description: [
     (value) => value.length >= 10,
-    "La descripción debe tener almenos 10 caracteres.",
+    'La descripción debe tener almenos 10 caracteres.',
   ],
 };
 
 export const NewPostView = ({ setVisible }) => {
-  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const dispatch = useDispatch();
+
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const {
     course,
@@ -39,25 +42,26 @@ export const NewPostView = ({ setVisible }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+
     setFormSubmitted(true);
     if (!isFormValid) return;
-    dispatch(startNewPost(formState));
+
+    dispatch( startNewPost(formState) );
     setVisible(false);
   };
 
   return (
     <div className="modal__content--body">
-      <form action="#" onSubmit={onSubmit}>
+      <form action="#" onSubmit={ onSubmit }>
         <div className="form__group">
           <label className="form__group--label" htmlFor="course">
             Curso
           </label>
           <select
             name="course"
-            id="course"
             className="form__group--select"
-            value={course}
-            onChange={onInputChange}
+            value={ course }
+            onChange={ onInputChange }
           >
             <option value="diseño">Diseño UI/UX</option>
             <option value="datos">Base de datos</option>
@@ -68,37 +72,39 @@ export const NewPostView = ({ setVisible }) => {
           <label className="form__group--label" htmlFor="title">
             Título
           </label>
-          {formSubmitted && !!titleValid ? (
-            <div className="error-message">{titleValid}</div>
-          ) : null}
+          {
+            formSubmitted && !!titleValid 
+              ? ( <div className="error-message">{titleValid}</div> ) 
+              : null
+          }
           <input
             className={`form__group--text ${!!titleValid && formSubmitted && "input-error-active"
               }`}
             type="text"
             name="title"
-            id="title"
             placeholder="Escriba un título de pregunta..."
-            value={title}
-            onChange={onInputChange}
+            value={ title }
+            onChange={ onInputChange }
           />
         </div>
         <div className="form__group">
           <label className="form__group--label" htmlFor="description">
             Descripción
           </label>
-          {formSubmitted && !!descriptionValid ? (
-            <div className="error-message">{descriptionValid}</div>
-          ) : null}
+          {
+            formSubmitted && !!descriptionValid 
+              ? ( <div className="error-message">{descriptionValid}</div> ) 
+              : null
+          }
           <textarea
             className={`form__group--text ${!!descriptionValid && formSubmitted && "input-error-active"
               }`}
             name="description"
-            id="description"
             cols="30"
             rows="7"
             placeholder="Describa el problema..."
-            value={description}
-            onChange={onInputChange}
+            value={ description }
+            onChange={ onInputChange }
           ></textarea>
         </div>
         <div className="form__submit">
