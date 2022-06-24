@@ -1,10 +1,21 @@
-import "./styles/commentItem.css";
+import TimeAgo from 'react-timeago';
+import SpanishStrings from 'react-timeago/lib/language-strings/es';
+import buildFormatter from 'react-timeago/lib/formatters/buildFormatter';
 
-import photo from "../../assets/images/photo.png";
+import "./styles/commentItem.css";
+import { useSelector } from 'react-redux';
+
+const formatter = buildFormatter(SpanishStrings);
+const photo = 'https://res.cloudinary.com/dbmqyx6gp/image/upload/v1656033153/fastlearning/photo_ukecoh.png';
 
 export const CommentItem = ({ comment }) => {
 
-  const { displayName, date, body: description, photoURL } = comment;
+  const { date, commentDescription, uid } = comment;
+
+  const { users } = useSelector((state) => state.user);
+
+
+  const postUser = users.find((user) => user.uid === uid);
 
   return (
     <div className="comment">
@@ -20,22 +31,22 @@ export const CommentItem = ({ comment }) => {
                 className="photo-user"
                 style={{
                   backgroundImage: `url(${
-                    photoURL === null 
+                    postUser.photoURL === null 
                       ? photo 
-                      : photoURL
+                      : postUser.photoURL
                   })`
                 }}
               ></div>
             </div>
-            <p className="comment__body--userText">{displayName}</p>
+            <p className="comment__body--userText">{postUser.displayName}</p>
           </div>
           <div className="comment__time">
-            <i className="fa-solid fa-clock"></i>
-            <span>{date}</span>
+            <i className="fa-solid fa-clock" style={{ marginRight: '6px' }}></i>
+            <TimeAgo date={ date } formatter={formatter} />
           </div>
         </div>
         <div className="comment__body--description">
-          <p>{description}</p>
+          <p>{commentDescription}</p>
         </div>
       </div>
     </div>

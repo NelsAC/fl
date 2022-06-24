@@ -12,21 +12,20 @@ export const startSaveComment = ({ commentDescription }) => {
   return async (dispatch, getState) => {
     dispatch(setSaving());
 
-    const { active: post } = getState().learning;
+    const { active: post } = getState().post;
 
-    const { uid, displayName, photoURL } = getState().auth;
+    const { uid } = getState().auth;
 
     const newComment = {
       date: new Date().getTime(),
       uid,
-      displayName,
-      body: commentDescription,
-      photoURL,
+      commentDescription,
       postId: post.id,
+      best: false,
     };
 
     const newDoc = doc(
-      collection(firebaseDB, `FL2022/learning/posts/${post.id}/comments`)
+      collection(firebaseDB, `FL2022/fastlearning/posts/${post.id}/comments`)
     );
     await setDoc(newDoc, newComment);
     newComment.id = newDoc.id;
@@ -37,7 +36,7 @@ export const startSaveComment = ({ commentDescription }) => {
 
 export const startLoadingComments = () => {
   return async (dispatch, getState) => {
-    const { active: post } = getState().learning;
+    const { active: post } = getState().post;
 
     const comments = await loadComments(post.id);
     dispatch(setComments(comments));
@@ -46,7 +45,7 @@ export const startLoadingComments = () => {
 
 export const startLoadingAllComments = () => {
   return async (dispatch, getState) => {
-    const { posts } = getState().learning;
+    const { posts } = getState().post;
 
     const allComments = [];
     posts.forEach((post) => {

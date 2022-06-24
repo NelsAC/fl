@@ -4,6 +4,7 @@ export const commentSlice = createSlice({
   name: 'comment',
   initialState: {
     isSaving: false,
+    loadingAllComments: true,
     loadingComments: false,
     messageSaved: '',
     comments: [],
@@ -28,7 +29,16 @@ export const commentSlice = createSlice({
     },
     setAllComments: (state, actions) => {
       state.comments = actions.payload;
+      state.loadingAllComments = false;
     },
+    setClearLogoutComments: (state) => {
+      state.comments = [];
+      state.isSaving = false;
+      state.messageSaved = '';
+      state.loadingAllComments = true;
+      state.loadingComments = false;
+      state.active = null;
+    }
   },
 });
 
@@ -39,4 +49,5 @@ export const {
   setActiveComments,
   setSaving,
   setAllComments,
+  setClearLogoutComments,
 } = commentSlice.actions;

@@ -3,13 +3,16 @@ import {
   registerWithEmailAndPassword,
   signInWithEmailPassword,
   signInWithGoogle,
+  updateNameAndEmail,
 } from '../../firebase/providers';
 import { fileUpload } from '../../helpers';
-import { setSaving } from '../learning';
+import { loadRegisteredUsers } from '../../helpers/loadRegisteredUsers';
+import { startUpdateNameAndEmailUser, setUsers, startLoadingActiveUser, startNewUser, startUpdatePhotoURLUser } from '../user';
 import {
   checkingCredentials,
   login,
   logout,
+  setUpdateNameAndEmail,
   setUpdatePhoto,
 } from './authSlice';
 
@@ -26,7 +29,24 @@ export const startGoogleSignIn = () => {
 
     if (!result.ok) return dispatch(logout(result.errorMessage));
 
+    const registeredUsers = await loadRegisteredUsers();
+
+    if ( registeredUsers.length > 0 ) {
+      
+      const stateAcc = registeredUsers.some( user => user.uid === result.uid );
+
+      if ( stateAcc === false ) {
+        dispatch(startNewUser(result));
+        dispatch(startLoadingActiveUser(result.uid));
+      }
+
+    } else {
+      dispatch(startNewUser(result));
+    }
+    
+    dispatch(setUsers(registeredUsers));
     dispatch(login(result));
+    dispatch(startLoadingActiveUser(result.uid));
   };
 };
 
@@ -38,12 +58,27 @@ export const startCreatingUserWithEmailAndPassword = ({
 }) => {
   return async (dispatch) => {
     dispatch(checkingCredentials());
-    const { ok, uid, photoURL, errorMessage, displayName } =
+    const result =
       await registerWithEmailAndPassword({ name, lastName, email, password });
 
-    if (!ok) return dispatch(logout({ errorMessage }));
+    if (!result.ok) return dispatch(logout(result.errorMessage));
+    
+    const registeredUsers = await loadRegisteredUsers();
 
-    dispatch(login({ uid, photoURL, email, displayName }));
+    if ( registeredUsers.length > 0 ) {
+      const stateAcc = registeredUsers.some( user => user.uid === result.uid );
+
+      if ( stateAcc === false ) {
+        dispatch(startNewUser(result));
+        dispatch(startLoadingActiveUser(result.uid));
+      }
+    } else {
+      dispatch(startNewUser(result));
+    }
+
+    dispatch(setUsers(registeredUsers));
+    dispatch(login(result));
+    dispatch(startLoadingActiveUser(result.uid));
   };
 };
 
@@ -67,10 +102,20 @@ export const startLogout = () => {
 
 export const startUpdatePhotoURL = (files = []) => {
   return async (dispatch) => {
-    dispatch(setSaving());
-
     const result = await fileUpload(files[0]);
+    dispatch( setUpdatePhoto(result) );
 
-    dispatch(setUpdatePhoto(result));
+    //actualizar photo en la bd
+    dispatch( startUpdatePhotoURLUser() ); 
+  };
+};
+
+export const startUpdateNameAndEmail = ({ name, email }) => {
+  return async (dispatch) => {
+    const result = await updateNameAndEmail({ name, email });
+    dispatch( setUpdateNameAndEmail(result) );
+    
+    //actualizar datos en la bd
+    dispatch( startUpdateNameAndEmailUser() );
   };
 };

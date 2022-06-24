@@ -10,7 +10,11 @@ import "./styles/sidebar.css";
 
 import logo from "../../assets/images/logo.png";
 import logoMobile from "../../assets/images/logomobile.png";
-import photo from "../../assets/images/photo.png";
+import { setClearLogoutUser } from "../../store/user";
+import { setClearLogoutPosts } from "../../store/post";
+import { setClearLogoutComments } from "../../store/comment";
+
+const photo = 'https://res.cloudinary.com/dbmqyx6gp/image/upload/v1656033153/fastlearning/photo_ukecoh.png';
 
 export const Sidebar = () => {
   const fileInputRef = useRef();
@@ -23,6 +27,9 @@ export const Sidebar = () => {
 
   // salir de la app
   const onLogout = () => {
+    dispatch( setClearLogoutUser() );
+    dispatch( setClearLogoutPosts() );
+    dispatch( setClearLogoutComments() );
     dispatch( startLogout() );
   };
 
@@ -62,11 +69,14 @@ export const Sidebar = () => {
           <div className="navigation__header--profile">
             <div className="navigation__header--photo">
               {
-                (updatedMessage === null && photoURL === null) ? (
-                    <img src={photo} alt="foto" />
-                  ) : (
-                    <img src={photoURL} alt="foto" />
-                  )
+                <div className="photo-user"
+                  style={{
+                    backgroundImage: `url(${
+                      updatedMessage ===null && photoURL === null ? photo : photoURL
+                    }; )`,
+                  }}
+                >
+                </div>
               }
             </div>
             <i
@@ -121,7 +131,7 @@ export const Sidebar = () => {
         visible={modalProfile}
         setVisible={setModalProfile}
       >
-        <UpdateProfileView photoFB={photoURL} setVisible={setModalProfile} />
+        <UpdateProfileView setVisible={setModalProfile} />
       </Modal>
       <Modal
         title="Nueva Publicación"

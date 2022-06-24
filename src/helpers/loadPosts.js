@@ -2,7 +2,7 @@ import { collection, getDocs } from 'firebase/firestore/lite';
 import { firebaseDB } from '../firebase/config';
 
 export const loadPosts = async () => {
-  const collectionRef = collection(firebaseDB, `FL2022/learning/posts`);
+  const collectionRef = collection(firebaseDB, `FL2022/fastlearning/posts`);
   const docs = await getDocs(collectionRef);
 
   const posts = [];

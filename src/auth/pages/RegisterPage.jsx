@@ -22,11 +22,12 @@ const formValidations = {
 
 export const RegisterPage = () => {
 
+  const dispatch = useDispatch();
+  
   const { status, errorMessage } = useSelector( state => state.auth );
 
   const [formSubmitted, setFormSubmitted] = useState(false)
 
-  const dispatch = useDispatch();
 
   const {
     name,
@@ -48,10 +49,8 @@ export const RegisterPage = () => {
     e.preventDefault();
     setFormSubmitted(true);
 
-    if( !isFormValid ) return;
-
+    if ( !isFormValid ) return;
     dispatch( startCreatingUserWithEmailAndPassword(formState) )
-
   }
 
   return (

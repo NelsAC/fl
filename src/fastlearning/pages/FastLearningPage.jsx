@@ -1,7 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { getPostsByWord } from '../../helpers';
+import { useForm } from '../../hooks';
+import { startLoadingAllComments } from '../../store/comment';
 
 import { CheckingAuth } from '../../ui/components/CheckingAuth';
-import { startLoadingAllComments } from '../../store/comment';
 import { FastLearningLayout } from '../layout/FastLearningLayout';
 
 import {
@@ -10,26 +12,49 @@ import {
   PublicationView,
 } from "../views";
 
+//buscar
+const initialState = {
+  search: "",
+}
+
 export const FastLearningPage = () => {
   const dispatch = useDispatch();
 
-  const { loading, posts } = useSelector( (state) => state.learning );
+  const { loading, posts, currentUserPosts } = useSelector( (state) => state.post );
 
-  if ( !!loading ) {
+  const { loadingUsers, loadingUserActive } = useSelector( (state) => state.user );
+
+  const { search, onInputChange } = useForm(initialState);
+
+
+  const filteredPosts = getPostsByWord( posts, search );
+
+  let filteredPostsAll = [];
+  
+
+  if ( !!loading || !!loadingUsers ) {
     return <CheckingAuth />;
   }
 
   dispatch( startLoadingAllComments() );
 
+  if( filteredPosts.length > 0 && (currentUserPosts === null  ) ) {
+    filteredPostsAll.push(...filteredPosts);
+  }
+
+  if( currentUserPosts !== null ) {
+    filteredPostsAll.push(...currentUserPosts);
+  }
+
   return (
     <FastLearningLayout>
-      <NavBarInicioView />
+      <NavBarInicioView search={ search } onInputChange={ onInputChange } />
       <div className="content__body">
         {
-          posts.length > 0 
-            ? ( posts.map((post) => 
+          ( filteredPostsAll.length > 0 )
+            ? ( filteredPostsAll.map((post) => 
                 <PublicationView 
-                  key={post.id} 
+                  key={post.postId} 
                   post={post} 
                 />)
               )

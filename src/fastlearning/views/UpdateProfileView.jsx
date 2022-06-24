@@ -1,17 +1,45 @@
-import { useSelector } from 'react-redux';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { useForm } from '../../hooks';
+import { startUpdateNameAndEmail } from '../../store/auth';
 
 import './styles/profile.css';
 
-export const UpdateProfileView = () => {
+const formValidations = {
+  name: [ (value) => value.length >= 3, 'El nombre debe tener almenos 3 caracteres.' ],
+  email: [ (value) => value.includes('@'), 'El email debe tener una @.' ]
+}
 
-  const { displayName, email: emailUser } = useSelector((state) => state.auth);
+export const UpdateProfileView = ({ setVisible }) => {
 
-  const { name, email, onInputChange } = useForm({
-    name: displayName,
-    email: emailUser,
-  });
+  const dispatch = useDispatch();
+  const [formSubmitted, setFormSubmitted] = useState(false)
+
+  const { displayName: currentName, email: currentEmail } = useSelector((state) => state.auth);
+
+
+  const { 
+    name, 
+    email, 
+    onInputChange, 
+    nameValid,
+    formState,
+    emailValid,
+    isFormValid 
+  } = useForm({
+    name: currentName,
+    email: currentEmail,
+  }, formValidations);
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    setFormSubmitted(true)
+
+    if ( !isFormValid ) return;
+    dispatch( startUpdateNameAndEmail( formState ) );
+    setVisible(false);
+  }
 
   return (
     <>
@@ -20,17 +48,24 @@ export const UpdateProfileView = () => {
         <i className="fa-solid fa-person-chalkboard"></i>
       </div>
       <div className="modal__content--body profile__body">
-        <form action="#">
+        <form action="#" onSubmit={ onSubmit }>
           <div className="form__group">
             <label className="form__group--label" htmlFor="nombre">
               Nombres y Apellidos
             </label>
+            {
+              ( formSubmitted && !!nameValid ) ? (
+                <div className="error-message">
+                  { nameValid }
+                </div>
+              ) : null
+            }
             <input
               className="form__group--text"
               type="text"
               name="name"
               value={ name }
-              onChange={onInputChange}
+              onChange={ onInputChange }
             />
           </div>
 
@@ -38,6 +73,13 @@ export const UpdateProfileView = () => {
             <label className="form__group--label" htmlFor="correo">
               Correo
             </label>
+            {
+              ( formSubmitted && !!emailValid ) ? (
+                <div className="error-message">
+                  { emailValid }
+                </div>
+              ) : null
+            }
             <input
               className="form__group--text"
               type="email"

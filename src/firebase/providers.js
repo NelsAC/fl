@@ -4,6 +4,7 @@ import {
   createUserWithEmailAndPassword,
   updateProfile,
   signInWithEmailAndPassword,
+  updateEmail,
 } from "firebase/auth";
 
 import { firebaseAuth } from "./config";
@@ -113,10 +114,33 @@ export const updatePhotoUser = async (photo) => {
 
     return {
       ok: true,
-      updatedMessage: "Foto Actualizada",
+      updatedPhotoMessage: "Foto Actualizada",
       photoURL: photo,
     };
   } catch (error) {
     console.log(error.message);
   }
+};
+
+export const updateNameAndEmail = async ({ name, email }) => {
+
+  try {
+    await updateProfile(firebaseAuth.currentUser, {
+      displayName: name,
+    });
+    await updateEmail(firebaseAuth.currentUser, email);
+
+    return {
+      updatedMessageNameAndEmail: "Datos Actualizados",
+      displayName: name,
+      email: email,
+    };
+
+  } catch (error) {
+    console.log(error)
+    return {
+      updatedMessageNameAndEmail: "Datos No Actualizados"
+    };
+  }
+
 };

@@ -56,6 +56,13 @@
   .form__submit--btn:hover {
     filter: brightness(80%);
   }
+
+  .photo-user {
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
   
   /* .modal__content--photo {
     margin: 30px auto 30px;

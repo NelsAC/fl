@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { useDispatch } from 'react-redux';
 import { useForm } from '../../hooks';
-import { startNewPost } from '../../store/learning';
+import { startNewPost } from '../../store/post';
 
 import './styles/profile.css';
 

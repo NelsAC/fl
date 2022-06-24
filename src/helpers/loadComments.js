@@ -4,7 +4,7 @@ import { firebaseDB } from '../firebase/config';
 export const loadComments = async (id) => {
   const collectionRef = collection(
     firebaseDB,
-    `FL2022/learning/posts/${id}/comments`
+    `FL2022/fastlearning/posts/${id}/comments`
   );
   const docs = await getDocs(collectionRef);
 
@@ -22,7 +22,7 @@ export const loadComments = async (id) => {
 export const loadAllComments = async (id) => {
   const collectionRef = collection(
     firebaseDB,
-    `FL2022/learning/posts/${id}/comments`
+    `FL2022/fastlearning/posts/${id}/comments`
   );
   const docs = await getDocs(collectionRef);
 
