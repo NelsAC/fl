@@ -4,16 +4,28 @@ import buildFormatter from 'react-timeago/lib/formatters/buildFormatter';
 
 import "./styles/commentItem.css";
 import { useSelector } from 'react-redux';
+import { useState } from 'react';
+import { UserInfoView } from '../views/UserInfoView';
+import { Modal } from './Modal';
 
 const formatter = buildFormatter(SpanishStrings);
 const photo = 'https://res.cloudinary.com/dbmqyx6gp/image/upload/v1656033153/fastlearning/photo_ukecoh.png';
 
 export const CommentItem = ({ comment }) => {
 
+  const [modalUserInfo, setModalUserInfo] = useState(false);
+
   const { date, commentDescription, uid } = comment;
 
   const { users } = useSelector((state) => state.user);
 
+  const onModalUserCommentInfo = () => {
+    setModalUserInfo(true);
+  }
+
+  const onModalUserInfo = () => {
+    setModalUserInfo(true);
+  };
 
   const postUser = users.find((user) => user.uid === uid);
 
@@ -38,7 +50,7 @@ export const CommentItem = ({ comment }) => {
                 }}
               ></div>
             </div>
-            <p className="comment__body--userText">{postUser.displayName}</p>
+            <p className="comment__body--userText" onClick={onModalUserCommentInfo}>{postUser.displayName}</p>
           </div>
           <div className="comment__time">
             <i className="fa-solid fa-clock" style={{ marginRight: '6px' }}></i>
@@ -49,6 +61,13 @@ export const CommentItem = ({ comment }) => {
           <p>{commentDescription}</p>
         </div>
       </div>
+      <Modal
+        title="Nombre del usuario"
+        visible={modalUserInfo}
+        setVisible={setModalUserInfo}
+      >
+        <UserInfoView displayName="desde los comments" />
+      </Modal>
     </div>
   );
 };

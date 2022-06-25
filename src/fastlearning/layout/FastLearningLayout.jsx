@@ -6,7 +6,6 @@ export const FastLearningLayout = ({ children }) => {
   return (
     <>
       <Sidebar />
-
       <div 
         className="content animate__animated animate__fadeIn"
       >

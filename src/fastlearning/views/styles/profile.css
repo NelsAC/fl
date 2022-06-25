@@ -30,6 +30,7 @@
     font-weight: 400;
     display: block;
     width: 100%;
+    font-family: "Outfit", sans-serif;
   }
   .form__group--select:focus,
   .form__group--text:focus {
@@ -106,18 +107,6 @@
     justify-content: center;
     align-items: center;
     margin-bottom: 30px;
-    column-gap: 30px;
-  }
-  
-  .modal__content--rol > i {
-    font-size: 2rem;
-    background: -webkit-linear-gradient(
-      90deg,
-      var(--color-primary),
-      var(--dark-red)
-    );
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
   }
   
   .modal__content--body.profile__body > form {

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { useForm } from '../../hooks';
 import { startUpdateNameAndEmail } from '../../store/auth';
+import { RolUser } from '../components/RolUser';
 
 import './styles/profile.css';
 
@@ -44,8 +45,7 @@ export const UpdateProfileView = ({ setVisible }) => {
   return (
     <>
       <div className="modal__content--rol">
-        <i className="fa-solid fa-graduation-cap"></i>
-        <i className="fa-solid fa-person-chalkboard"></i>
+        <RolUser />
       </div>
       <div className="modal__content--body profile__body">
         <form action="#" onSubmit={ onSubmit }>

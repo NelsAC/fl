@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { startLogout, startUpdatePhotoURL } from "../../store/auth";
 import { NewPostView, UpdateProfileView } from "../views";
 import { Modal } from "./";
-import { ProgressBar } from "./";
 
 import "./styles/sidebar.css";
 
@@ -13,6 +12,8 @@ import logoMobile from "../../assets/images/logomobile.png";
 import { setClearLogoutUser } from "../../store/user";
 import { setClearLogoutPosts } from "../../store/post";
 import { setClearLogoutComments } from "../../store/comment";
+import { RolUser } from "./RolUser";
+import { Porgress } from "./Porgress";
 
 const photo = 'https://res.cloudinary.com/dbmqyx6gp/image/upload/v1656033153/fastlearning/photo_ukecoh.png';
 
@@ -57,6 +58,7 @@ export const Sidebar = () => {
         <div className="header__mobile--logo">
           <img src={ logo } alt="logo" />
         </div>
+        <RolUser />
       </header>
       <aside className="navigation">
         <div className="navigation__header">
@@ -94,12 +96,7 @@ export const Sidebar = () => {
               <h3>{ email }</h3>
             </div>
             <div className="navigation__header--rol">
-              <h4>
-                <i className="fa-solid fa-graduation-cap"></i>Estudiante
-              </h4>
-              <h4>
-                <i className="fa-solid fa-person-chalkboard"></i>Tutor
-              </h4>
+              <RolUser />
             </div>
           </div>
         </div>
@@ -121,9 +118,13 @@ export const Sidebar = () => {
               <i className="fa-regular fa-square-plus"></i>
               <p>Publicar</p>
             </span>
+            <span className="navigation__body--item mobile-nav">
+            <i className="fa-solid fa-circle-notch"></i>
+            </span>
           </div>
-          {/* TODO: falta dar funcionamidad */}
-          <ProgressBar correctComments={10} />
+          <div className="progress__section">
+          <Porgress />
+          </div>
         </div>
       </aside>
       <Modal

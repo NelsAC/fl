@@ -55,7 +55,7 @@ export const PublicationView = ({ post }) => {
   const postUser = users.find((user) => user.uid === uid);
 
   return (
-    <div className='content__body--publications' onClick={onClickPost}>
+    <div className='content__body--publications animate__animated animate__fadeIn' onClick={onClickPost}>
       <Link className='content__publication' to={`/post/${postId}`}>
         <h2 className='content__publication--title'>{newTitle}</h2>
         <p className='content__publication--description'>{newDescription}</p>
@@ -72,11 +72,7 @@ export const PublicationView = ({ post }) => {
           </div>
           <div className='publication__info--time'>
             <i className='fa-solid fa-clock' style={{ marginRight: '6px' }}></i>
-            {/* <span>{ date }</span> */}
             <TimeAgo date={ date } formatter={formatter} />
-            {/* <span>{`Hace ${dateBefore} ${
-              dateBefore !== 1 ? 'horas' : 'hora'
-            }`}</span> */}
           </div>
             {
               !!postUser && (

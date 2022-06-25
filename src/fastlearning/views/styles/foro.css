@@ -7,14 +7,21 @@
 .content__foro--header {
   width: 100%;
   background-image: url(../../../assets/images/prueba2.jpg);
-  background-position: center;
+  background-position: top;
   background-size: cover;
   background-repeat: no-repeat;
-  height: 350px;
+  height: 250px;
+}
+
+@media (min-width: 768px) {
+  .content__foro--header {
+    height: 350px;
+    background-position: center;
+  }
 }
 
 .foro__header--container {
-  width: 98%;
+  width: 95%;
   margin: 0 auto;
   padding: 10px 0;
   display: flex;
@@ -39,6 +46,13 @@
   color: var(--light-gray);
   font-size: 2.1rem;
   font-weight: bold;
+  cursor: pointer;
+  transition: all .2s ease-out;
+}
+
+.foro__header--userText:hover {
+  color: var(--dark-red);
+  text-decoration: underline;
 }
 
 .foro__header--user {
@@ -108,13 +122,12 @@
 
 .body-foro {
   width: 100%;
-  background: url(../../../assets/images/bgForo.jpg), var(--light-gray);
   background-position: center;
   background-repeat: repeat-y;
 }
 
 .content__body--container {
-  width: 98%;
+  width: 95%;
   margin: 0 auto;
   padding: 80px 0 50px;
   text-align: start;
@@ -139,9 +152,14 @@
 }
 
 @media (min-width: 768px) {
-  .content__body--container {
+  .body-foro {
     width: 70%;
-    padding: 100px 0;
+  }
+
+  .content__body--container {
+    /* width: 60%; */
+    padding: 100px 0;   
+    margin: 0 auto;
   }
 
   .foro__body--description {
@@ -153,10 +171,26 @@
   }
 }
 
+.content__foro--newComment {
+  width: 95%;
+}
+
+.content__foro--newComment > p {
+  font-size: 1.6rem;
+  color: var(--color-primary);
+}
+
+.content__foro--comments > p {
+  font-size: 2rem;
+  color: var(--color-backfunc);
+}
+
+.content__foro--comments {
+  width: 98%;
+}
 
 .content__foro--newComment,
 .content__foro--comments {
-  width: 98%;
   margin: 20px auto;
   padding: 20px 0;
 }
@@ -164,16 +198,15 @@
 @media (min-width: 768px) {
   .content__foro--newComment,
   .content__foro--comments {
-    width: 70%;
+    /* width: 70%; */
   }
 }
 
 .content__foro--newComment > p,
 .content__foro--comments > p {
-  font-size: 2rem;
-  color: var(--color-backfunc);
   font-weight: 700;
   margin-bottom: 30px;
+  font-size: 2rem;
 }
 
 .foro-model {
@@ -244,3 +277,33 @@
   background: #5500cc;
   cursor: pointer;
 } 
+
+
+
+
+
+main {
+  display: flex;
+  width: 100%;
+  background: url(../../../assets/images/bgForo.jpg), var(--light-gray);
+}
+
+.entry-read {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  main {
+    width: 90%;
+    margin: 0 auto;
+  }
+  
+  .entry-read {
+    width: 30%;
+    margin: 0 auto;
+    padding: 20px 0 20px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}

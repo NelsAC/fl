@@ -25,7 +25,7 @@ export const startSaveComment = ({ commentDescription }) => {
     };
 
     const newDoc = doc(
-      collection(firebaseDB, `FL2022/fastlearning/posts/${post.id}/comments`)
+      collection(firebaseDB, `FL2022/fastlearning/posts/${post.postId}/comments`)
     );
     await setDoc(newDoc, newComment);
     newComment.id = newDoc.id;
@@ -38,7 +38,7 @@ export const startLoadingComments = () => {
   return async (dispatch, getState) => {
     const { active: post } = getState().post;
 
-    const comments = await loadComments(post.id);
+    const comments = await loadComments(post.postId);
     dispatch(setComments(comments));
   };
 };
@@ -49,7 +49,7 @@ export const startLoadingAllComments = () => {
 
     const allComments = [];
     posts.forEach((post) => {
-      allComments.push(loadAllComments(post.id));
+      allComments.push(loadAllComments(post.postId));
     });
 
     const allCommentsPromise = Promise.all(allComments);

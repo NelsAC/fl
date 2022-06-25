@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import TimeAgo from 'react-timeago';
@@ -7,11 +7,13 @@ import buildFormatter from 'react-timeago/lib/formatters/buildFormatter';
 
 import { useForm } from "../../hooks";
 import { CheckingAuth } from "../../ui";
-import { CommentItem, FloatButton } from "../components";
+import { CommentItem, FloatButton, Modal } from "../components";
 import { startLoadingComments, startSaveComment } from "../../store/comment";
 
 import "./styles/foro.css";
 import comilla from "../../assets/images/comillaForo.png";
+import { ProgramTimeline } from "../../aside/ProgramTimeline";
+import { UserInfoView } from "./UserInfoView";
 
 const photo = 'https://res.cloudinary.com/dbmqyx6gp/image/upload/v1656033153/fastlearning/photo_ukecoh.png';
 
@@ -19,6 +21,7 @@ const formatter = buildFormatter(SpanishStrings);
 
 export const ForoView = () => {
   const dispatch = useDispatch();
+  const [modalUserInfo, setModalUserInfo] = useState(false);
 
   const { photoURL: photoURLActualUser } = useSelector((state) => state.auth);
   const { active: post } = useSelector((state) => state.post);
@@ -35,6 +38,10 @@ export const ForoView = () => {
 
   const onSaveComment = () => {
     dispatch(startSaveComment({ commentDescription }));
+  };
+
+  const onModalUserInfo = () => {
+    setModalUserInfo(true);
   };
 
   const postUser = users.find((user) => user.uid === uid);
@@ -62,16 +69,13 @@ export const ForoView = () => {
                         }}
                       ></div>
                     </div>
-                    <p className="foro__header--userText">{postUser.displayName}</p>
+                    <p className="foro__header--userText" onClick={onModalUserInfo}>{postUser.displayName}</p>
                   </div>
                 )}
                 <div className="foro__header--info">
                   <div className="foro__header--time">
                     <i className="fa-solid fa-clock" style={{ marginRight: '6px' }}></i>
                     <TimeAgo date={ date } formatter={formatter} />
-                    {/* <span>{`Hace ${dateBefore} ${
-                      dateBefore > 1 ? "horas" : "hora"
-                    }`}</span> */}
                   </div>
                   <div className="foro__header--course">
                     <i className="fa-solid fa-book"></i>
@@ -87,6 +91,7 @@ export const ForoView = () => {
               </div>
             </div>
           </div>
+          <main>
           <div className="body-foro">
             <div className="content__foro--body">
               <div className="content__body--container">
@@ -138,6 +143,31 @@ export const ForoView = () => {
               )}
             </div>
           </div>
+          <div className="entry-read">
+            <ProgramTimeline 
+              title= "¿Qué es API?"
+              body= "API es una abreviación de Application Programming Interface, que es una interfaz de programación de aplicaciones. Es una herramienta que permite a los desarrolladores crear aplicaciones que se pueden utilizar en otros programas."
+              img= 'https://res.cloudinary.com/dbmqyx6gp/image/upload/v1656114585/fastlearning/Api_v0u9dx.jpg'
+            />
+            <ProgramTimeline 
+              title= "¿Qué es SQL?"
+              body= "SQL es un lenguaje de consulta de base de datos. Es un lenguaje de programación que se utiliza para crear consultas de base de datos. Es un lenguaje de programación que se utiliza para crear consultas de base de datos."
+              img= 'https://res.cloudinary.com/dbmqyx6gp/image/upload/v1656114594/fastlearning/datos_neyq1b.png'
+            />
+            <ProgramTimeline 
+              title= "¿Qué es UX/UI?"
+              body= "UX/UI es una abreviación de User Experience y User Interface, que es una interfaz de usuario. Es una herramienta que permite a los desarrolladores crear aplicaciones que se pueden utilizar en otros programas."
+              img= 'https://res.cloudinary.com/dbmqyx6gp/image/upload/v1656114593/fastlearning/dise%C3%B1o_lcrxtf.png'
+            />
+          </div>
+          </main>
+          <Modal
+            title="Nombre del usuario"
+            visible={modalUserInfo}
+            setVisible={setModalUserInfo}
+          >
+            <UserInfoView displayName="el autor de la publicacion" />
+          </Modal>
         </div>
       )}
     </>

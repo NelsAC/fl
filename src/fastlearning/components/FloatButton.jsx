@@ -10,7 +10,6 @@ export const FloatButton = () => {
       className="float__button"
     >
       <i className="fa-solid fa-angle-left"></i>
-      <span>Volver</span>
     </Link>
   )
 }

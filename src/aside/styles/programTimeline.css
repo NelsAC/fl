@@ -1,0 +1,36 @@
+.programTimeline {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid var(--light-gray);
+    background-color: var(--light-gray);
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 10%);
+    overflow: hidden;
+    margin-top: 50px;
+}
+
+.entry-img {
+    height: 80px;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.entry-title,
+.entry-body {
+    padding: 10px 20px;   
+}
+
+.entry-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--dark-red);
+    text-align: center;
+}
+
+.entry-body {
+    line-height: 1.5;
+    font-size: 1.6rem;
+    color: var(--dark-red);
+    text-align: center;
+}
