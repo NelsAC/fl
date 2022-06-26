@@ -49,6 +49,11 @@ export const commentSlice = createSlice({
     },
     setBestComment: (state, actions) => {
       state.comments.map((comment) => {
+
+        if ( comment.best === true ) {
+          comment.best = false;
+        }
+
         if (comment.id === actions.payload.id) {
           comment.best = true;
         }

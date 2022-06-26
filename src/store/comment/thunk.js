@@ -131,7 +131,17 @@ export const startUnLikeComment = (postId, id) => {
 export const startBestComment = (postId, id) => {
   return async (dispatch, getState) => {
     const { comments } = getState().comment;
- 
+
+    const comment = comments.find((comment) => comment.best === true);
+
+    if ( comment !== undefined ) {
+      const docRef = doc(
+        firebaseDB, 
+        `FL2022/fastlearning/posts/${postId}/comments/${comment.id}`
+      );
+      await setDoc(docRef, { best: false }, { merge: true });
+    }
+
     const docRef = doc(
       firebaseDB, 
       `FL2022/fastlearning/posts/${postId}/comments/${id}`
@@ -141,6 +151,5 @@ export const startBestComment = (postId, id) => {
     const data = {
       id,
     }
-
     dispatch( setBestComment(data) );
 }}
