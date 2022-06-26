@@ -37,3 +37,20 @@
     background: linear-gradient(to right, var(--color-primary), var(--dark-red)) border-box;
     border-radius: 5px;
 }
+
+
+/* tooltip */
+
+.tooltip-container {
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .fa-solid.fa-circle-question {
+    font-size: 1.8rem;
+    color: var(--color-backfunc);
+  }
+  
+  .fa-solid.fa-circle-question:hover + .tooltip-one {
+    display: block;
+  }

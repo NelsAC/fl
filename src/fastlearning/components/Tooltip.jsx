@@ -1,13 +1,11 @@
 import "./styles/tooltip.css";
 
-export const Tooltip = ({respuestas = 3}) => {
+export const Tooltip = ({respuestas, desc, bgColor, left = '200%'}) => {
   return (
-    <div className="tooltip-container">
-      <i className="fa-solid fa-circle-question"></i>
-      <div className="tooltip-one animate__animated animate__zoomIn animate__faster">
-        <span>Tienes {respuestas} respuestas bien calificadas</span>
-        <p>Te faltan 17 más para pasar al siguiente nivel</p>
+
+      <div className="tooltip-one animate__animated animate__zoomIn animate__faster" style={{ backgroundColor: bgColor, left: left }}>
+        <span>{respuestas}</span>
+        <p>{desc}</p>
         </div>
-    </div>
   );
 };

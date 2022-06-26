@@ -1,4 +1,4 @@
-.tooltip-container {
+/* .tooltip-container {
   cursor: pointer;
   position: relative;
 }
@@ -10,15 +10,13 @@
 
 .fa-solid.fa-circle-question:hover + .tooltip-one {
   display: block;
-}
+} */
 
 .tooltip-one {
   display: none;
   padding: 10px;
-  background: var(--color-primary);
   position: absolute;
   top: -150%;
-  left: 200%;
   min-width: 150px;
   width: 300px;
   border-radius: 5px;
@@ -33,7 +31,7 @@
   margin-left: -14px;
   width: 18px;
   height: 18px;
-  background: var(--color-primary);
+  background-color: inherit;
   transform: rotate(45deg) translateY(-50%);
 }
 

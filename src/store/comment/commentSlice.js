@@ -8,6 +8,7 @@ export const commentSlice = createSlice({
     loadingComments: false,
     messageSaved: '',
     comments: [],
+    likes: [],
     active: null,
   },
   reducers: {
@@ -38,6 +39,13 @@ export const commentSlice = createSlice({
       state.loadingAllComments = true;
       state.loadingComments = false;
       state.active = null;
+    },
+    setLikes: (state, actions) => { 
+      state.comments.map((comment) => {
+        if (comment.id === actions.payload.id) {
+          comment.likes = actions.payload.commentLikeArray;
+        }
+      })
     }
   },
 });
@@ -50,4 +58,5 @@ export const {
   setSaving,
   setAllComments,
   setClearLogoutComments,
+  setLikes
 } = commentSlice.actions;

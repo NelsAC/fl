@@ -4,7 +4,7 @@ export const postSlice = createSlice({
   name: 'post',
   initialState: {
     isSaving: false,
-    loading: true, 
+    loading: true,
     messageSaved: '',
     posts: [],
     active: null,
@@ -18,8 +18,8 @@ export const postSlice = createSlice({
       state.active = null;
     },
     setActivePost: (state, actions) => {
-      state.active = actions.payload;
       state.messageSaved = '';
+      state.active = actions.payload;
     },
     setPosts: (state, actions) => {
       state.posts = actions.payload;

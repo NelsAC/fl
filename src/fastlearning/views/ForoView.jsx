@@ -21,6 +21,7 @@ const formatter = buildFormatter(SpanishStrings);
 
 export const ForoView = () => {
   const dispatch = useDispatch();
+
   const [modalUserInfo, setModalUserInfo] = useState(false);
 
   const { photoURL: photoURLActualUser } = useSelector((state) => state.auth);
@@ -162,11 +163,12 @@ export const ForoView = () => {
           </div>
           </main>
           <Modal
-            title="Nombre del usuario"
             visible={modalUserInfo}
-            setVisible={setModalUserInfo}
           >
-            <UserInfoView displayName="el autor de la publicacion" />
+            <UserInfoView 
+              autor={postUser}
+              setVisible={setModalUserInfo}
+            />
           </Modal>
         </div>
       )}

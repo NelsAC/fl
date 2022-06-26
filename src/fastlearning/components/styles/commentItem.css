@@ -11,6 +11,32 @@
     border-radius: 5px;
     box-shadow: 2px 2px 4px -3px rgb(0 0 0 / 62%);
     margin-right: 5px;
+    cursor: pointer;
+  }
+  
+  .comment__like>span {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; 
+  }
+
+  .fa-solid.fa-heart {
+    color: #e74c3c;
+    transition: all .2s ease;
+    animation: heartBeat 1s;
+  }
+
+  @keyframes heartBeat {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
   }
 
   .comment__body {

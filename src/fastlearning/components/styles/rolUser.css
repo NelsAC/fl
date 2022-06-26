@@ -18,4 +18,13 @@
     color: var(--light-gray);
   }
   
-  
+  /* tooltip */
+
+.tooltip-container {
+  cursor: pointer;
+  position: relative;
+}
+
+.header__mobile--rol:hover + .tooltip-one {
+  display: block;
+}

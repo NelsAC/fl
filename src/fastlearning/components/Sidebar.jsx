@@ -60,7 +60,7 @@ export const Sidebar = () => {
         </div>
         <RolUser />
       </header>
-      <aside className="navigation">
+      <aside className="navigation animate__animated animate__fadeIn">
         <div className="navigation__header">
           <div className="navigation__header--barra">
             <img src={ logoMobile } alt="logo" />

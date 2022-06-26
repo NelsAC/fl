@@ -45,6 +45,7 @@ export const startUpdateNameAndEmailUser = () => {
         const { active: user } = getState().user;
 
         const docRef = doc( firebaseDB, `FL2022/fastlearning/Users/${user}` );
+        
         await setDoc( docRef, { displayName, email }, { merge: true } );
 
         const registeredUsers = await loadRegisteredUsers();
