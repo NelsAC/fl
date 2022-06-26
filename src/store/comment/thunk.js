@@ -1,6 +1,7 @@
 import {
   addNewComment,
   setAllComments,
+  setBestComment,
   setComments,
   setLikes,
   setSaving,
@@ -122,5 +123,24 @@ export const startUnLikeComment = (postId, id) => {
     }
 
     dispatch( setLikes(data) );
+}}
 
+
+//best comment
+
+export const startBestComment = (postId, id) => {
+  return async (dispatch, getState) => {
+    const { comments } = getState().comment;
+ 
+    const docRef = doc(
+      firebaseDB, 
+      `FL2022/fastlearning/posts/${postId}/comments/${id}`
+    );
+    await setDoc(docRef, { best: true }, { merge: true });
+
+    const data = {
+      id,
+    }
+
+    dispatch( setBestComment(data) );
 }}

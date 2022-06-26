@@ -137,7 +137,7 @@ export const ForoView = () => {
               <p>{`Comentarios (${comments.length})`}</p>
               {comments.length > 0 ? (
                 comments.map((comment) => (
-                  <CommentItem key={comment.id} comment={comment} />
+                  <CommentItem key={comment.id} comment={comment} currentPost={postUser} />
                 ))
               ) : (
                 <p>🙁 Aún no hay comentarios</p>

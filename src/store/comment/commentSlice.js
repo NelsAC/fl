@@ -46,6 +46,13 @@ export const commentSlice = createSlice({
           comment.likes = actions.payload.commentLikeArray;
         }
       })
+    },
+    setBestComment: (state, actions) => {
+      state.comments.map((comment) => {
+        if (comment.id === actions.payload.id) {
+          comment.best = true;
+        }
+      })
     }
   },
 });
@@ -58,5 +65,6 @@ export const {
   setSaving,
   setAllComments,
   setClearLogoutComments,
-  setLikes
+  setLikes,
+  setBestComment,
 } = commentSlice.actions;
