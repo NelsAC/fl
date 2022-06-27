@@ -24,10 +24,6 @@ export const PublicationView = ({ post }) => {
   const { users } = useSelector((state) => state.user);
 
   const { title = '', course, description, date, postId, uid } = post;
-
-  useEffect(() => {
-    dispatch( startGetBestAnswers() );
-  }, [])
   
 
   const onClickPost = () => {

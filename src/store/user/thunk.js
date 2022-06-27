@@ -2,7 +2,7 @@ import { collection, doc, setDoc } from "firebase/firestore/lite";
 import { firebaseDB } from "../../firebase/config";
 
 import { loadRegisteredUsers } from "../../helpers/loadRegisteredUsers";
-import { addNewUser, setActiveUser, setUsers } from "./userSlice";
+import { addNewUser, setActiveUser, setCountBestAnswer, setUsers } from "./userSlice";
 
 
 export const startNewUser = (user) => {
@@ -90,13 +90,13 @@ export const startGetBestAnswers = () => {
             } 
         })
 
-        const prueba =[]
+        const bestAnswers =[]
         commentsUser.map( comment => {
             if ( comment.best === true ) {
-                prueba.push(comment);
+                bestAnswers.push(comment);
             } 
         })
         
-        console.log(prueba);
+        dispatch( setCountBestAnswer(bestAnswers.length) );
     }
 }

@@ -7,6 +7,7 @@ import './styles/userInfo.css';
 export const UserInfoView = ({autor, setVisible}) => {
   
   const { posts } = useSelector((state) => state.post);
+  const { countBestAnswer } = useSelector((state) => state.user);
 
   const { 
     date: registerDate, 
@@ -42,7 +43,7 @@ export const UserInfoView = ({autor, setVisible}) => {
         </div>
         <div className="modal__data--resumen">
           {/* <span>{mejores}</span> */}
-          <span>3</span>
+          <span>{countBestAnswer}</span>
           <p>mejores respuestas</p>
         </div>
       </div>
