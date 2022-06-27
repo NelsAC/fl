@@ -46,16 +46,44 @@ export const commentSlice = createSlice({
       })
     },
     setBestComment: (state, actions) => {
-      state.comments.map((comment) => {
 
-        if ( comment.best === true ) {
-          comment.best = false;
-        }
+      const prueba = state.activeComments.some( comment => comment.best === true );
 
-        if (comment.commentId === actions.payload.commentId) {
-          comment.best = true;
-        }
-      })
+      if (!!prueba) {
+        const prueba2 = state.activeComments.find( comment => comment.best === true );
+        prueba2.best = false;
+
+        state.comments.map((comment) => {
+          if (comment.commentId === prueba2.commentId) {
+            comment.best = false;
+          }
+        });
+
+        state.activeComments.map((comment) => {
+          if (comment.commentId === actions.payload.commentId) {
+            comment.best = true;
+          }
+        })
+
+        state.comments.map((comment) => {
+          if ( comment.commentId === actions.payload.commentId ) {
+            comment.best = true;
+          }
+        })
+
+      } else {
+        state.activeComments.map( comment => {
+          if (comment.commentId === actions.payload.commentId) {
+            comment.best = true;
+          }
+        })
+
+        state.comments.map((comment) => {
+          if ( comment.commentId === actions.payload.commentId ) {
+            comment.best = true;
+          }
+        })
+      }
     }
   },
 });

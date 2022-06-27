@@ -74,3 +74,29 @@ export const startLoadingActiveUser = (userId) => {
         
     }
 }
+
+
+// obtener el numero de mejores respuestas
+
+export const startGetBestAnswers = () => {
+    return async (dispatch, getState) => {
+        const { uid } = getState().auth;
+        const { comments } = getState().comment;
+
+        const commentsUser = [];
+        comments.map( comment => {
+            if ( comment.uid === uid ) {
+                commentsUser.push(comment);
+            } 
+        })
+
+        const prueba =[]
+        commentsUser.map( comment => {
+            if ( comment.best === true ) {
+                prueba.push(comment);
+            } 
+        })
+        
+        console.log(prueba);
+    }
+}

@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,6 +10,7 @@ import { setActivePost } from '../../store/post';
 // import { setActiveComments } from '../../store/comment';
 
 import './styles/publication.css';
+import { startGetBestAnswers } from '../../store/user';
 
 const formatter = buildFormatter(SpanishStrings);
 const photo = 'https://res.cloudinary.com/dbmqyx6gp/image/upload/v1656033153/fastlearning/photo_ukecoh.png';
@@ -23,6 +24,11 @@ export const PublicationView = ({ post }) => {
   const { users } = useSelector((state) => state.user);
 
   const { title = '', course, description, date, postId, uid } = post;
+
+  useEffect(() => {
+    dispatch( startGetBestAnswers() );
+  }, [])
+  
 
   const onClickPost = () => {
     dispatch(setActivePost(post));

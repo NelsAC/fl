@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getPostsByWord } from '../../helpers';
 import { useForm } from '../../hooks';
 import { startLoadingAllComments } from '../../store/comment';
+import { startGetBestAnswers } from '../../store/user';
 
 import { CheckingAuth } from '../../ui/components/CheckingAuth';
 import { FastLearningLayout } from '../layout/FastLearningLayout';
@@ -38,7 +39,7 @@ export const FastLearningPage = () => {
     return <CheckingAuth />;
   }
 
-  
+  // dispatch( startGetBestAnswers() );
   // dispatch( startLoadingAllComments() );
 
   if( filteredPosts.length > 0 && (currentUserPosts === null  ) ) {
