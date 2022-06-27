@@ -7,7 +7,7 @@ import {
   setSaving,
 } from './commentSlice';
 import { doc, collection, setDoc } from 'firebase/firestore/lite';
-import { loadAllComments, loadComments } from '../../helpers';
+import { loadComments } from '../../helpers';
 import { firebaseDB } from '../../firebase/config';
 
 export const startSaveComment = ({ commentDescription }) => {
@@ -22,16 +22,17 @@ export const startSaveComment = ({ commentDescription }) => {
       date: new Date().getTime(),
       uid,
       commentDescription,
-      postId: post.id,
+      postId: post.postId,
       best: false,
       likes: [],
     };
 
     const newDoc = doc(
-      collection(firebaseDB, `FL2022/fastlearning/posts/${post.postId}/comments`)
+      collection(firebaseDB, `FL2022/fastlearning/comments`)
     );
+    newComment.commentId = newDoc.id;
+
     await setDoc(newDoc, newComment);
-    newComment.id = newDoc.id;
 
     dispatch(addNewComment(newComment));
   };
@@ -40,30 +41,23 @@ export const startSaveComment = ({ commentDescription }) => {
 export const startLoadingComments = () => {
   return async (dispatch, getState) => {
     const { active: post } = getState().post;
+    const { comments } = getState().comment;
 
-    const comments = await loadComments(post.postId);
-    dispatch(setComments(comments));
+    const commentsArray = [];
+    comments.map( comment => {
+      if ( comment.postId === post.postId ) {
+        commentsArray.push(comment);
+      }
+    });
+    dispatch(setComments(commentsArray));
   };
 };
 
 export const startLoadingAllComments = () => {
   return async (dispatch, getState) => {
-    const { posts } = getState().post;
+    const result = await loadComments();
 
-    const allComments = [];
-    posts.forEach((post) => {
-      allComments.push(loadAllComments(post.postId));
-    });
-
-    const allCommentsPromise = Promise.all(allComments);
-    const all = await allCommentsPromise;
-    const allCommentsArray = [];
-    all.forEach((comments) => {
-      comments.forEach((comment) => {
-        allCommentsArray.push(comment);
-      });
-    });
-    dispatch( setAllComments(allCommentsArray) );
+    dispatch(setAllComments(result));
   };
 };
 
@@ -71,12 +65,12 @@ export const startLoadingAllComments = () => {
 
 // likes
 
-export const startLikeComment = (postId, id) => {
+export const startLikeComment = (commentId) => {
   return async (dispatch, getState) => {
     const { uid } = getState().auth;
-    const { comments } = getState().comment;
+    const { activeComments } = getState().comment;
 
-    const comment = comments.find((comment) => comment.id === id);
+    const comment = activeComments.find((comment) => comment.commentId === commentId);
 
     let commentLikeArray = [];
     const newLike = {
@@ -88,38 +82,38 @@ export const startLikeComment = (postId, id) => {
 
     const docRef = doc(
       firebaseDB, 
-      `FL2022/fastlearning/posts/${postId}/comments/${id}`
+      `FL2022/fastlearning/comments/${commentId}`
     );
     await setDoc(docRef, { likes: commentLikeArray }, { merge: true });
 
     const data = {
       commentLikeArray,
-      id,
-    }
+      commentId,
+    } 
 
     dispatch( setLikes(data) );
 
 }}
 
-export const startUnLikeComment = (postId, id) => {
+export const startUnLikeComment = (commentId) => {
   return async (dispatch, getState) => {
     const { uid } = getState().auth;
-    const { comments } = getState().comment;
+    const { activeComments } = getState().comment;
 
-    const comment = comments.find((comment) => comment.id === id);
+    const comment = activeComments.find((comment) => comment.commentId === commentId);
 
     let commentLikeArray = [];
     commentLikeArray = comment.likes.filter((like) => like.uid !== uid);
 
     const docRef = doc(
       firebaseDB, 
-      `FL2022/fastlearning/posts/${postId}/comments/${id}`
+      `FL2022/fastlearning/comments/${commentId}`
     );
     await setDoc(docRef, { likes: commentLikeArray }, { merge: true });
 
     const data = {
       commentLikeArray,
-      id,
+      commentId,
     }
 
     dispatch( setLikes(data) );
@@ -128,28 +122,28 @@ export const startUnLikeComment = (postId, id) => {
 
 //best comment
 
-export const startBestComment = (postId, id) => {
+export const startBestComment = (commentId) => {
   return async (dispatch, getState) => {
-    const { comments } = getState().comment;
+    const { activeComments } = getState().comment;
 
-    const comment = comments.find((comment) => comment.best === true);
+    const comment = activeComments.find((comment) => comment.best === true);
 
     if ( comment !== undefined ) {
       const docRef = doc(
         firebaseDB, 
-        `FL2022/fastlearning/posts/${postId}/comments/${comment.id}`
+        `FL2022/fastlearning/comments/${comment.commentId}`
       );
       await setDoc(docRef, { best: false }, { merge: true });
     }
 
     const docRef = doc(
       firebaseDB, 
-      `FL2022/fastlearning/posts/${postId}/comments/${id}`
+      `FL2022/fastlearning/comments/${commentId}`
     );
     await setDoc(docRef, { best: true }, { merge: true });
 
     const data = {
-      id,
+      commentId,
     }
     dispatch( setBestComment(data) );
 }}

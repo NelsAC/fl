@@ -28,7 +28,7 @@ export const CommentItem = ({ comment, currentPost }) => {
 
   const [modalUserCommentInfo, setModalUserCommentInfo] = useState(false);
 
-  const { date, commentDescription, uid, id, postId, likes, best } = comment;
+  const { date, commentDescription, uid, commentId, likes, best } = comment;
 
   const currentUserLike = likes.some((like) => like.uid === currentUidUser);
   const { users } = useSelector((state) => state.user);
@@ -38,15 +38,15 @@ export const CommentItem = ({ comment, currentPost }) => {
   }
 
   const onCommentLike = () => {
-    dispatch( startLikeComment(postId, id) );
+    dispatch( startLikeComment(commentId) );
   }
 
   const onCommentUnlike = () => {
-    dispatch( startUnLikeComment(postId, id) );
+    dispatch( startUnLikeComment(commentId) );
   }
 
   const onBestComment = () => {
-    dispatch( startBestComment(postId, id) );
+    dispatch( startBestComment(commentId) );
   }
 
   const postCommentUser = users.find((user) => user.uid === uid);

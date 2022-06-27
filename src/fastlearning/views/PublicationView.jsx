@@ -7,7 +7,7 @@ import SpanishStrings from 'react-timeago/lib/language-strings/es';
 import buildFormatter from 'react-timeago/lib/formatters/buildFormatter';
 
 import { setActivePost } from '../../store/post';
-import { setActiveComments } from '../../store/comment';
+// import { setActiveComments } from '../../store/comment';
 
 import './styles/publication.css';
 
@@ -26,7 +26,7 @@ export const PublicationView = ({ post }) => {
 
   const onClickPost = () => {
     dispatch(setActivePost(post));
-    dispatch(setActiveComments());
+    // dispatch(setActiveComments());
   };
 
   const newTitle = useMemo(() => {

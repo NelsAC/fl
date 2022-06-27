@@ -22,7 +22,9 @@ export const FastLearningPage = () => {
 
   const { loading, posts, currentUserPosts } = useSelector( (state) => state.post );
 
-  const { loadingUsers, loadingUserActive } = useSelector( (state) => state.user );
+  const { loadingUsers } = useSelector( (state) => state.user );
+
+  const { loadingAllComments } = useSelector( (state) => state.comment );
 
   const { search, onInputChange } = useForm(initialState);
 
@@ -32,11 +34,12 @@ export const FastLearningPage = () => {
   let filteredPostsAll = [];
   
 
-  if ( !!loading || !!loadingUsers ) {
+  if ( !!loading || !!loadingUsers || !!loadingAllComments ) {
     return <CheckingAuth />;
   }
 
-  dispatch( startLoadingAllComments() );
+  
+  // dispatch( startLoadingAllComments() );
 
   if( filteredPosts.length > 0 && (currentUserPosts === null  ) ) {
     filteredPostsAll.push(...filteredPosts);

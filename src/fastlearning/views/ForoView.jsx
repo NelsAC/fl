@@ -26,7 +26,7 @@ export const ForoView = () => {
 
   const { photoURL: photoURLActualUser } = useSelector((state) => state.auth);
   const { active: post } = useSelector((state) => state.post);
-  const { comments, loadingComments } = useSelector((state) => state.comment);
+  const { activeComments, loadingComments, comments } = useSelector((state) => state.comment);
   const { users } = useSelector((state) => state.user);
 
   const { commentDescription, onInputChange } = useForm(post);
@@ -35,7 +35,7 @@ export const ForoView = () => {
 
   useEffect(() => {
     dispatch(startLoadingComments());
-  }, []);
+  }, [comments]);
 
   const onSaveComment = () => {
     dispatch(startSaveComment({ commentDescription }));
@@ -134,10 +134,10 @@ export const ForoView = () => {
               </div>
             </div>
             <div className="content__foro--comments">
-              <p>{`Comentarios (${comments.length})`}</p>
-              {comments.length > 0 ? (
-                comments.map((comment) => (
-                  <CommentItem key={comment.id} comment={comment} currentPost={postUser} />
+              <p>{`Comentarios (${activeComments.length})`}</p>
+              {activeComments.length > 0 ? (
+                activeComments.map((comment) => (
+                  <CommentItem key={comment.commentId} comment={comment} currentPost={postUser} />
                 ))
               ) : (
                 <p>🙁 Aún no hay comentarios</p>

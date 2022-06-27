@@ -6,6 +6,7 @@ import { firebaseAuth } from '../firebase/config';
 import { login, logout } from '../store/auth';
 import { startLoadingPosts } from '../store/post';
 import { startLoadingActiveUser, startLoadingUsers } from '../store/user';
+import { startLoadingAllComments } from '../store/comment';
 
 export const useCheckAuth = () => {
 
@@ -27,7 +28,7 @@ export const useCheckAuth = () => {
         photoURL 
       } = user;
       dispatch( login({ uid, email, displayName, photoURL }) );
-      
+      dispatch( startLoadingAllComments() );
       dispatch( startLoadingUsers() );
       dispatch( startLoadingPosts() );
       dispatch( startLoadingActiveUser(uid) );

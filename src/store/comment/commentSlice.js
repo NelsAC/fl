@@ -8,7 +8,7 @@ export const commentSlice = createSlice({
     loadingComments: false,
     messageSaved: '',
     comments: [],
-    likes: [],
+    activeComments: [],
     active: null,
   },
   reducers: {
@@ -18,11 +18,8 @@ export const commentSlice = createSlice({
       state.messageSaved = 'Comentario sumado correctamente';
       state.active = null;
     },
-    setActiveComments: (state, actions) => {
-      state.loadingComments = true;
-    },
     setComments: (state, actions) => {
-      state.comments = actions.payload;
+      state.activeComments = actions.payload;
       state.loadingComments = false;
     },
     setSaving: (state, actions) => {
@@ -34,6 +31,7 @@ export const commentSlice = createSlice({
     },
     setClearLogoutComments: (state) => {
       state.comments = [];
+      state.activeComments = [];
       state.isSaving = false;
       state.messageSaved = '';
       state.loadingAllComments = true;
@@ -42,7 +40,7 @@ export const commentSlice = createSlice({
     },
     setLikes: (state, actions) => { 
       state.comments.map((comment) => {
-        if (comment.id === actions.payload.id) {
+        if (comment.commentId === actions.payload.commentId) {
           comment.likes = actions.payload.commentLikeArray;
         }
       })
@@ -54,7 +52,7 @@ export const commentSlice = createSlice({
           comment.best = false;
         }
 
-        if (comment.id === actions.payload.id) {
+        if (comment.commentId === actions.payload.commentId) {
           comment.best = true;
         }
       })
@@ -66,7 +64,6 @@ export const commentSlice = createSlice({
 export const {
   addNewComment,
   setComments,
-  setActiveComments,
   setSaving,
   setAllComments,
   setClearLogoutComments,
