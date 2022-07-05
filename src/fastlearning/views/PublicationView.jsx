@@ -10,7 +10,7 @@ import { setActivePost } from '../../store/post';
 // import { setActiveComments } from '../../store/comment';
 
 import './styles/publication.css';
-import { startGetBestAnswers } from '../../store/user';
+// import { startGetBestAnswers } from '../../store/user';
 
 const formatter = buildFormatter(SpanishStrings);
 const photo = 'https://res.cloudinary.com/dbmqyx6gp/image/upload/v1656033153/fastlearning/photo_ukecoh.png';

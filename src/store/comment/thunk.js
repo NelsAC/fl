@@ -9,6 +9,8 @@ import {
 import { doc, collection, setDoc } from 'firebase/firestore/lite';
 import { loadComments } from '../../helpers';
 import { firebaseDB } from '../../firebase/config';
+import { startGetBestAnswers } from '../user';
+import { toast } from 'react-toastify';
 
 export const startSaveComment = ({ commentDescription }) => {
   return async (dispatch, getState) => {
@@ -32,7 +34,12 @@ export const startSaveComment = ({ commentDescription }) => {
     );
     newComment.commentId = newDoc.id;
 
-    await setDoc(newDoc, newComment);
+    await toast.promise( 
+      setDoc(newDoc, newComment),
+      {
+        pending: 'Agregando comentario..',
+        success: 'Comentario agregado 😀',
+      });
 
     dispatch(addNewComment(newComment));
   };
@@ -146,4 +153,5 @@ export const startBestComment = (commentId) => {
       commentId,
     }
     dispatch( setBestComment(data) );
+    dispatch( startGetBestAnswers() );
 }}

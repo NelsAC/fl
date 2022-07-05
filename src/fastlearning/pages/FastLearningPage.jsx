@@ -1,8 +1,8 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
 import { getPostsByWord } from '../../helpers';
 import { useForm } from '../../hooks';
-import { startLoadingAllComments } from '../../store/comment';
-import { startGetBestAnswers } from '../../store/user';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { CheckingAuth } from '../../ui/components/CheckingAuth';
 import { FastLearningLayout } from '../layout/FastLearningLayout';
@@ -19,7 +19,6 @@ const initialState = {
 }
 
 export const FastLearningPage = () => {
-  const dispatch = useDispatch();
 
   const { loading, posts, currentUserPosts } = useSelector( (state) => state.post );
 
@@ -39,9 +38,6 @@ export const FastLearningPage = () => {
     return <CheckingAuth />;
   }
 
-  // dispatch( startGetBestAnswers() );
-  // dispatch( startLoadingAllComments() );
-
   if( filteredPosts.length > 0 && (currentUserPosts === null  ) ) {
     filteredPostsAll.push(...filteredPosts);
   }
@@ -50,8 +46,18 @@ export const FastLearningPage = () => {
     filteredPostsAll.push(...currentUserPosts);
   }
 
+  const sort = (a, b) => {
+    if (a.date > b.date) {return -1;}
+    if (a.date < b.date) {return 1;}
+    return 0;
+  }
+  filteredPostsAll.sort(sort);
+
   return (
     <FastLearningLayout>
+      <ToastContainer 
+        theme='dark'
+      />
       <NavBarInicioView search={ search } onInputChange={ onInputChange } />
       <div className="content__body">
         {

@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify';
 import {
   logoutFirebase,
   registerWithEmailAndPassword,
@@ -102,7 +103,12 @@ export const startLogout = () => {
 
 export const startUpdatePhotoURL = (files = []) => {
   return async (dispatch) => {
-    const result = await fileUpload(files[0]);
+    const result = await toast.promise(
+      fileUpload(files[0]),
+      {
+        pending: 'Actualizando foto...',
+        success: 'Foto actualizada 📷',
+      });
     dispatch( setUpdatePhoto(result) );
 
     //actualizar photo en la bd
@@ -112,10 +118,17 @@ export const startUpdatePhotoURL = (files = []) => {
 
 export const startUpdateNameAndEmail = ({ name, email }) => {
   return async (dispatch) => {
-    const result = await updateNameAndEmail({ name, email });
+    const result = await toast.promise(
+      updateNameAndEmail({ name, email }),
+      {
+        pending: 'Actualizando datos..',
+        success: 'Datos actualizados 👌',
+      });
+
     dispatch( setUpdateNameAndEmail(result) );
     
     //actualizar datos en la bd
     dispatch( startUpdateNameAndEmailUser() );
+
   };
 };

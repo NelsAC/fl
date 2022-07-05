@@ -5,11 +5,14 @@ import TimeAgo from 'react-timeago';
 import SpanishStrings from 'react-timeago/lib/language-strings/es';
 import buildFormatter from 'react-timeago/lib/formatters/buildFormatter';
 
+import { ToastContainer } from 'react-toastify';
+
 import { useForm } from "../../hooks";
 import { CheckingAuth } from "../../ui";
 import { CommentItem, FloatButton, Modal } from "../components";
 import { startLoadingComments, startSaveComment } from "../../store/comment";
 
+import 'react-toastify/dist/ReactToastify.css';
 import "./styles/foro.css";
 import comilla from "../../assets/images/comillaForo.png";
 import { ProgramTimeline } from "../../aside/ProgramTimeline";
@@ -26,19 +29,20 @@ export const ForoView = () => {
 
   const { photoURL: photoURLActualUser } = useSelector((state) => state.auth);
   const { active: post } = useSelector((state) => state.post);
-  const { activeComments, loadingComments, comments } = useSelector((state) => state.comment);
+  const { activeComments, loadingComments, comments, isSaving } = useSelector((state) => state.comment);
   const { users } = useSelector((state) => state.user);
 
-  const { commentDescription, onInputChange } = useForm(post);
+  const { commentDescription = "", onInputChange, onResetForm } = useForm(post);
 
   const { course, date, description, title, uid } = post;
-
+  
   useEffect(() => {
     dispatch(startLoadingComments());
   }, [comments]);
 
   const onSaveComment = () => {
     dispatch(startSaveComment({ commentDescription }));
+    onResetForm();
   };
 
   const onModalUserInfo = () => {
@@ -53,6 +57,9 @@ export const ForoView = () => {
         <CheckingAuth />
       ) : (
         <div className="content__body--foro animate__animated animate__fadeIn">
+                <ToastContainer 
+                  theme='dark'
+                />
           <FloatButton />
           <div className="content__foro--header">
             <div className="foro__header--container">
@@ -128,9 +135,15 @@ export const ForoView = () => {
                     onChange={onInputChange}
                   ></textarea>
                 </div>
-                <button className="content__foro--btn" onClick={onSaveComment}>
-                  Sumar comentario 😀
-                </button>
+                {
+                  isSaving
+                    ? <button className="content__foro--btn disabled">
+                        Guardando...
+                      </button>
+                    : <button className="content__foro--btn" onClick={onSaveComment}>
+                        Sumar comentario 😀
+                      </button>
+                }
               </div>
             </div>
             <div className="content__foro--comments">

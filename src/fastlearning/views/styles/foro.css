@@ -267,6 +267,12 @@
   transition: background 0.2s ease;
 }
 
+.content__foro--btn.disabled:hover {
+  background: #7e23ff;
+  cursor: no-drop;
+}
+
+
 @media (min-width: 768px) {
   .content__foro--btn {
     width: 25%;

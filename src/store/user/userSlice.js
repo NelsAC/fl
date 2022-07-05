@@ -7,6 +7,7 @@ export const userSlice = createSlice({
     updatedPhotoMessage: null,
     loadingUsers: true,
     loadingUserActive: true,
+    loadingUpdateProfile: null,
     active: null,
     countBestAnswer: 0,
   },
@@ -28,10 +29,11 @@ export const userSlice = createSlice({
       state.loadingUsers = true;
       state.loadingUserActive = true;
       state.active = null;
+      state.loadingUpdateProfile = null;
     },
     setCountBestAnswer: (state, actions) => {
       state.countBestAnswer = actions.payload;
-    },
+    }
   },
 });
 
@@ -41,5 +43,5 @@ export const {
     setActiveUser,
     setUsers,
     setClearLogoutUser,
-    setCountBestAnswer
+    setCountBestAnswer,
 } = userSlice.actions;

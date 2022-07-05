@@ -8,6 +8,8 @@ export const UserInfoView = ({autor, setVisible}) => {
   
   const { posts } = useSelector((state) => state.post);
   const { countBestAnswer } = useSelector((state) => state.user);
+  const { uid: currentUserId } = useSelector((state) => state.auth);
+  const { comments } = useSelector((state) => state.comment);
 
   const { 
     date: registerDate, 
@@ -24,6 +26,24 @@ export const UserInfoView = ({autor, setVisible}) => {
       postsUser.push(post);
     }
   });
+  
+  let countBestAnswerUser = 0;
+
+  if ( currentUserId === uid ) {
+    countBestAnswerUser = countBestAnswer;
+  } else {
+    const commentsUser = [];
+    comments.map( comment => {
+      if ( comment.uid === uid ) {
+        commentsUser.push(comment);
+      }
+    })
+    commentsUser.map( comment => {
+      if ( comment.best === true ) {
+        countBestAnswerUser++;
+      }
+    })
+  }
 
   return (
     <div className='modal__user--info'>
@@ -42,8 +62,7 @@ export const UserInfoView = ({autor, setVisible}) => {
           <p>publicaciones</p>
         </div>
         <div className="modal__data--resumen">
-          {/* <span>{mejores}</span> */}
-          <span>{countBestAnswer}</span>
+          <span>{countBestAnswerUser}</span>
           <p>mejores respuestas</p>
         </div>
       </div>
