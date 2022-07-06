@@ -3,6 +3,7 @@ import './styles/courses.css';
 import code from "../../assets/images/code.jpg";
 import design from "../../assets/images/design.jpg";
 import bd from "../../assets/images/bd.jpg";
+import { Link } from 'react-router-dom';
 
 export const CoursesView = () => {
   return (
@@ -22,7 +23,7 @@ export const CoursesView = () => {
             Realiza preguntas, resuelve problemas y ayuda a los demás en temas
             de programación
           </p>
-          <button className="content__curso--btn">Ir a preguntas</button>
+          <Link to="/" style={{ display: 'inline-block' }} className="content__curso--btn">Ir a preguntas</Link>
         </div>
         <div className="content__curso--img even">
           <img src={ code } />
@@ -33,17 +34,16 @@ export const CoursesView = () => {
           <h2>Diseño</h2>
           <div className="separacion"></div>
           <p className="content__curso--obj">
-            <i className="fa-solid fa-bullseye"></i>Lenguajes de programación y
-            algoritmos
+            <i className="fa-solid fa-bullseye"></i>Patrones de diseño y experiencia de usuario
           </p>
           <p className="content__curso--stack">
-            <i className="fa-brands fa-stack-overflow"></i>Java, PHP, JS, Python
+            <i className="fa-brands fa-stack-overflow"></i>UX, UI
           </p>
           <p className="content__curso--resume">
             Realiza preguntas, resuelve problemas y ayuda a los demás en temas
-            de programación
+            de diseño
           </p>
-          <button className="content__curso--btn">Ir a preguntas</button>
+          <Link to="/" style={{ display: 'inline-block' }} className="content__curso--btn">Ir a preguntas</Link>
         </div>
         <div className="content__curso--img odd">
           <img src={ design } />
@@ -54,17 +54,16 @@ export const CoursesView = () => {
           <h2>Base de datos</h2>
           <div className="separacion"></div>
           <p className="content__curso--obj">
-            <i className="fa-solid fa-bullseye"></i>Lenguajes de programación y
-            algoritmos
+            <i className="fa-solid fa-bullseye"></i>Leguaje SQL y bases de datos
           </p>
           <p className="content__curso--stack">
-            <i className="fa-brands fa-stack-overflow"></i>Java, PHP, JS, Python
+            <i className="fa-brands fa-stack-overflow"></i>SQL SERVER, Heidi SQL y MySQL
           </p>
           <p className="content__curso--resume">
             Realiza preguntas, resuelve problemas y ayuda a los demás en temas
-            de programación
+            de base de datos
           </p>
-          <button className="content__curso--btn">Ir a preguntas</button>
+          <Link to="/" style={{ display: 'inline-block' }} className="content__curso--btn">Ir a preguntas</Link>
         </div>
         <div className="content__curso--img even">
           <img src={ bd } />
