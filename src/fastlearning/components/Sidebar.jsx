@@ -74,7 +74,7 @@ export const Sidebar = () => {
                 <div className="photo-user"
                   style={{
                     backgroundImage: `url(${
-                      updatedMessage ===null && photoURL === null ? photo : photoURL
+                      updatedMessage === null && photoURL === null ? photo : photoURL
                     }; )`,
                   }}
                 >

@@ -10,6 +10,7 @@ export const userSlice = createSlice({
     loadingUpdateProfile: null,
     active: null,
     countBestAnswer: 0,
+    courses: [],
   },
   reducers: {
     addNewUser: (state, actions) => {
@@ -30,9 +31,13 @@ export const userSlice = createSlice({
       state.loadingUserActive = true;
       state.active = null;
       state.loadingUpdateProfile = null;
+      state.courses = [];
     },
     setCountBestAnswer: (state, actions) => {
       state.countBestAnswer = actions.payload;
+    },
+    setCourses: (state, actions) => {
+      state.courses = actions.payload;
     }
   },
 });
@@ -44,4 +49,5 @@ export const {
     setUsers,
     setClearLogoutUser,
     setCountBestAnswer,
+    setCourses
 } = userSlice.actions;

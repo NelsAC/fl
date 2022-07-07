@@ -1,8 +1,9 @@
 import { collection, doc, setDoc } from "firebase/firestore/lite";
 import { firebaseDB } from "../../firebase/config";
+import { loadCourses } from "../../helpers/loadCourses";
 
 import { loadRegisteredUsers } from "../../helpers/loadRegisteredUsers";
-import { addNewUser, setActiveUser, setCountBestAnswer, setUsers } from "./userSlice";
+import { addNewUser, setActiveUser, setCountBestAnswer, setCourses, setUsers } from "./userSlice";
 
 
 export const startNewUser = (user) => {
@@ -100,3 +101,11 @@ export const startGetBestAnswers = () => {
         dispatch( setCountBestAnswer(bestAnswers.length) );
     }
 }
+
+
+export const startLoadingCourses = () => {
+    return async (dispatch) => {
+      const courses = await loadCourses();
+      dispatch(setCourses(courses));
+    };
+  }	

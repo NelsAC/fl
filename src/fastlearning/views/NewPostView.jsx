@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from '../../hooks';
 import { startNewPost } from '../../store/post';
 
@@ -28,6 +28,8 @@ export const NewPostView = ({ setVisible }) => {
   const dispatch = useDispatch();
 
   const [formSubmitted, setFormSubmitted] = useState(false);
+
+  const { courses } = useSelector((state) => state.user);
 
   const {
     course,
@@ -59,13 +61,21 @@ export const NewPostView = ({ setVisible }) => {
           </label>
           <select
             name="course"
+            style={{textTransform: 'capitalize'}}
             className="form__group--select"
             value={ course }
             onChange={ onInputChange }
           >
-            <option value="diseño">Diseño UI/UX</option>
+            {
+              courses.map((course) => (
+                <option key={ course.courseId } value={ course.name } style={{textTransform: 'capitalize'}}>
+                  { course.name }
+                </option>
+              ))
+            }
+            {/* <option value="diseño">Diseño UI/UX</option>
             <option value="datos">Base de datos</option>
-            <option value="programación">Programación</option>
+            <option value="programación">Programación</option> */}
           </select>
         </div>
         <div className="form__group">
