@@ -1,18 +1,25 @@
-import "./modal.css";
+import "./styles/modal.css";
 
-export const Modal = ({ children, title, visible, setVisible }) => {
+export const Modal = ({ children, title="", visible, setVisible }) => {
   return (
     <>
       {visible && (
         <div className="modal">
-          <div className="modal__content animate__animated animate__fadeInDown animate__faster">
-            <div className="modal__content--title">
-              <h2>{title}</h2>
-              <span 
-                className="modal__close--profile"
-                onClick={ () => setVisible(false) }
-                >&times;</span>
-            </div>
+          <div className="modal__content animate__animated animate__fadeInDown">
+            {
+              title.length > 0 && (
+                  <div className="modal__content--title">
+                    <h2>{title}</h2>
+                    <span 
+                      className="modal__close--profile"
+                      onClick={ () => setVisible(false) }
+                    >
+                      &times;
+                    </span>
+                  </div>
+                )
+            }
+            
             { children }
           </div>
         </div>

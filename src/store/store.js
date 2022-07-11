@@ -1,13 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { authSlice } from './auth'
-import { learningSlice } from './learning'
+import { postSlice } from './post'
 import { commentSlice } from './comment'
-import { userSlice } from './user/userSlice'
+import { userSlice } from './user'
 
 export const store = configureStore({
   reducer: {
     auth: authSlice.reducer,
-    learning: learningSlice.reducer,
+    post: postSlice.reducer,
     comment: commentSlice.reducer,
     user: userSlice.reducer,
   },

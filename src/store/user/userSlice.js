@@ -1,23 +1,53 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 export const userSlice = createSlice({
-    name: 'user',
-    initialState: {
-        isSaving: false,
-        messageSaved: '',
+  name: 'user',
+  initialState: {
+    users: [],
+    updatedPhotoMessage: null,
+    loadingUsers: true,
+    loadingUserActive: true,
+    loadingUpdateProfile: null,
+    active: null,
+    countBestAnswer: 0,
+    courses: [],
+  },
+  reducers: {
+    addNewUser: (state, actions) => {
+      state.users.push(actions.payload);
     },
-    reducers: {
-        updateUser: (state, {payload} ) => { // payload: user
-            state.isSaving = payload.isSaving;
-            state.messageSaved = payload.messageSaved;
-            state.nameUser = payload.nameUser;
-        },
-
+    setActiveUser: (state, actions) => {
+      state.active = actions.payload;
+      state.loadingUserActive = false;
+    },
+    setUsers: (state, actions) => {
+      state.users = actions.payload;
+      state.loadingUsers = false;
+    },
+    setClearLogoutUser: (state) => {
+      state.users = [];
+      state.updatedPhotoMessage = null;
+      state.loadingUsers = true;
+      state.loadingUserActive = true;
+      state.active = null;
+      state.loadingUpdateProfile = null;
+      state.courses = [];
+    },
+    setCountBestAnswer: (state, actions) => {
+      state.countBestAnswer = actions.payload;
+    },
+    setCourses: (state, actions) => {
+      state.courses = actions.payload;
     }
+  },
 });
 
-
-// Action creators are generated for each case reducer function
+// Actions creators are generated for each case reducer function
 export const {
-    updateUser,
+    addNewUser,
+    setActiveUser,
+    setUsers,
+    setClearLogoutUser,
+    setCountBestAnswer,
+    setCourses
 } = userSlice.actions;

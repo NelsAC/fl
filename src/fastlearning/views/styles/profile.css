@@ -30,6 +30,7 @@
     font-weight: 400;
     display: block;
     width: 100%;
+    font-family: "Outfit", sans-serif;
   }
   .form__group--select:focus,
   .form__group--text:focus {
@@ -56,8 +57,15 @@
   .form__submit--btn:hover {
     filter: brightness(80%);
   }
+
+  .photo-user {
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
   
-  .modal__content--photo {
+  /* .modal__content--photo {
     margin: 30px auto 30px;
     width: 120px;
     height: 120px;
@@ -92,25 +100,13 @@
     left: 50%;
     transform: translate(-50%, 0);
     color: var(--light-gray);
-  }
+  } */
   
   .modal__content--rol {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 30px;
-    column-gap: 30px;
-  }
-  
-  .modal__content--rol > i {
-    font-size: 2rem;
-    background: -webkit-linear-gradient(
-      90deg,
-      var(--color-primary),
-      var(--dark-red)
-    );
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
   }
   
   .modal__content--body.profile__body > form {

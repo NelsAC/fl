@@ -1,0 +1,30 @@
+
+  .header__mobile--rol {
+    background: linear-gradient(to right, var(--dark-red), var(--color-secondary));
+    padding: 2px 10px;
+    border-radius: 5px;
+    display: flex;
+    width: 108px;
+  }
+
+  .header__mobile--rol>p {
+    color: var(--light-gray);
+    font-weight: 600;
+  }
+  
+  svg {
+    width: 20px;
+    margin-right: 5px;
+    color: var(--light-gray);
+  }
+  
+  /* tooltip */
+
+.tooltip-container {
+  cursor: pointer;
+  position: relative;
+}
+
+.header__mobile--rol:hover + .tooltip-one {
+  display: block;
+}

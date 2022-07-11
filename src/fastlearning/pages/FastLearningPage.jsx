@@ -1,29 +1,76 @@
-import { useSelector } from "react-redux";
-import { FastLearningLayout } from "../layout/FastLearningLayout";
-import { NavBarInicioView, NothingPublicationView, PublicationView } from "../views";
+import { useSelector } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
+import { getPostsByWord } from '../../helpers';
+import { useForm } from '../../hooks';
+import 'react-toastify/dist/ReactToastify.css';
 
+import { CheckingAuth } from '../../ui/components/CheckingAuth';
+import { FastLearningLayout } from '../layout/FastLearningLayout';
+
+import {
+  NavBarInicioView,
+  NothingPublicationView,
+  PublicationView,
+} from "../views";
+
+//buscar
+const initialState = {
+  search: "",
+}
 
 export const FastLearningPage = () => {
 
-  const { loading, posts } = useSelector(state => state.learning);
+  const { loading, posts, currentUserPosts } = useSelector( (state) => state.post );
+
+  const { loadingUsers } = useSelector( (state) => state.user );
+
+  const { loadingAllComments } = useSelector( (state) => state.comment );
+
+  const { search, onInputChange } = useForm(initialState);
+
+
+  const filteredPosts = getPostsByWord( posts, search );
+
+  let filteredPostsAll = [];
+  
+
+  if ( !!loading || !!loadingUsers || !!loadingAllComments ) {
+    return <CheckingAuth />;
+  }
+
+  if( filteredPosts.length > 0 && (currentUserPosts === null  ) ) {
+    filteredPostsAll.push(...filteredPosts);
+  }
+
+  if( currentUserPosts !== null ) {
+    filteredPostsAll.push(...currentUserPosts);
+  }
+
+  const sort = (a, b) => {
+    if (a.date > b.date) {return -1;}
+    if (a.date < b.date) {return 1;}
+    return 0;
+  }
+  filteredPostsAll.sort(sort);
 
   return (
     <FastLearningLayout>
-      {/* navbar inicio */}
-      <NavBarInicioView />
-
+      <ToastContainer 
+        theme='dark'
+      />
+      <NavBarInicioView search={ search } onInputChange={ onInputChange } />
       <div className="content__body">
         {
-          ( posts.length > 0 )
-          ? (
-            posts.map(post => (
-              <PublicationView key={post.id} post={post} />
-            ))
-          )
-          : <NothingPublicationView />
+          ( filteredPostsAll.length > 0 )
+            ? ( filteredPostsAll.map((post) => 
+                <PublicationView 
+                  key={post.postId} 
+                  post={post} 
+                />)
+              )
+            : ( <NothingPublicationView /> )
         }
-      </div>  
-
+      </div>
     </FastLearningLayout>
-  )
-}
+  );
+};

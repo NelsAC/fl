@@ -1,0 +1,97 @@
+.modal__user--info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.modal__user--photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow:  0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    margin-bottom: 30px;
+}
+
+.modal__user--rol {
+    margin-bottom: 20px;
+}
+
+.modal__user--data {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 20px;
+}
+
+.modal__data--resumen {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.modal__data--resumen>span {
+    font-weight: bold;
+    font-size: 2.2rem;
+    color: var(--color-backfunc);
+}
+
+.modal__data--resumen>p {
+    font-size: 1.7rem;
+    color: #2d2e30;
+}
+
+.modal__user--name {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.modal__user--name>p {
+    font-size: 2.7rem;
+    font-weight: bold;
+    color: var(--color-backfunc);
+}
+
+.modal__user--name>span {
+    display: block;
+}
+
+.register-date {
+    margin-top: 5px;
+    color: #636363;
+    font-size: 1.5rem;
+}
+
+.modal__user--btn {
+    border: none;
+    background-color: transparent;
+    color: var(--dark-red);
+    font-size: 1.7rem;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+}
+
+.modal__user--btn:hover {
+    transform: scale(1.05);
+    text-decoration: underline;
+}
+
+.modal__close--userInfo {
+    text-align: center;
+    color: var(--dark-gray);
+    font-size: 3rem;
+    font-weight: bold;
+    background-color: #f2f3fb;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+}
+
+.modal__close--userInfo:hover {
+    color: var(--dark-red);
+}

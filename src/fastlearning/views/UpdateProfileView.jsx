@@ -1,64 +1,51 @@
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { useDispatch, useSelector } from "react-redux";
-import { useForm } from "../../hooks";
-import { startUpdateUser } from "../../store/user/thunk";
+import { useForm } from '../../hooks';
+import { startUpdateNameAndEmail } from '../../store/auth';
+import { RolUser } from '../components/RolUser';
 
-import "./styles/profile.css";
-import photo from "../../assets/images/photo.png";
+import './styles/profile.css';
 
-export const UpdateProfileView = ({ photoFB, setVisible }) => {
-  const { displayName, email: emailUser } = useSelector((state) => state.auth);
-  let { nameUser } = useSelector((state) => state.user);
+const formValidations = {
+  name: [ (value) => value.length >= 3, 'El nombre debe tener almenos 3 caracteres.' ],
+  email: [ (value) => value.includes('@'), 'El email debe tener una @.' ]
+}
 
-  if (nameUser === undefined) {
-    nameUser = displayName;
-  }else{
-    nameUser = nameUser;
-  }
-  
+export const UpdateProfileView = ({ setVisible }) => {
 
   const dispatch = useDispatch();
+  const [formSubmitted, setFormSubmitted] = useState(false)
+
+  const { displayName: currentName, email: currentEmail } = useSelector((state) => state.auth);
+
 
   const { 
-    name,
+    name, 
     email, 
-    onInputChange,
-  } = useForm(
-    {
-      name: nameUser,
-      email: emailUser,
-    },
-  );
+    onInputChange, 
+    nameValid,
+    formState,
+    emailValid,
+    isFormValid 
+  } = useForm({
+    name: currentName,
+    email: currentEmail,
+  }, formValidations);
 
   const onSubmit = (e) => {
     e.preventDefault();
-    dispatch( startUpdateUser({name}) );
+    setFormSubmitted(true)
+
+    if ( !isFormValid ) return;
+    dispatch( startUpdateNameAndEmail( formState ) );
     setVisible(false);
   }
 
-
   return (
     <>
-      <div className="modal__content--photo">
-        <div
-          className="photo-user"
-          style={{
-            backgroundImage: `url(${photoFB === null ? photo : photoFB})`,
-          }}
-        ></div>
-        <input
-          type="file"
-          className="upload"
-          id="imageUpload"
-          accept=".png, .jpg, .jpeg"
-        />
-        <label htmlFor="imageUpload" className="upload-label">
-          <i className="fa-solid fa-camera"></i>
-        </label>
-      </div>
       <div className="modal__content--rol">
-        <i className="fa-solid fa-graduation-cap"></i>
-        <i className="fa-solid fa-person-chalkboard"></i>
+        <RolUser />
       </div>
       <div className="modal__content--body profile__body">
         <form action="#" onSubmit={ onSubmit }>
@@ -66,12 +53,19 @@ export const UpdateProfileView = ({ photoFB, setVisible }) => {
             <label className="form__group--label" htmlFor="nombre">
               Nombres y Apellidos
             </label>
+            {
+              ( formSubmitted && !!nameValid ) ? (
+                <div className="error-message">
+                  { nameValid }
+                </div>
+              ) : null
+            }
             <input
               className="form__group--text"
               type="text"
               name="name"
-              value={name}
-              onChange={onInputChange}
+              value={ name }
+              onChange={ onInputChange }
             />
           </div>
 
@@ -79,17 +73,26 @@ export const UpdateProfileView = ({ photoFB, setVisible }) => {
             <label className="form__group--label" htmlFor="correo">
               Correo
             </label>
+            {
+              ( formSubmitted && !!emailValid ) ? (
+                <div className="error-message">
+                  { emailValid }
+                </div>
+              ) : null
+            }
             <input
               className="form__group--text"
               type="email"
               name="email"
-              value={email}
-              onChange={onInputChange}
+              value={ email }
+              onChange={ onInputChange }
             />
           </div>
 
           <div className="form__submit">
-            <button className="btn form__submit--btn" type="submit">Guardar</button>
+            <button className="btn form__submit--btn" type="submit">
+              Guardar
+            </button>
           </div>
         </form>
       </div>

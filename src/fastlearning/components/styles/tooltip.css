@@ -1,0 +1,49 @@
+/* .tooltip-container {
+  cursor: pointer;
+  position: relative;
+}
+
+.fa-solid.fa-circle-question {
+  font-size: 1.8rem;
+  color: var(--color-backfunc);
+}
+
+.fa-solid.fa-circle-question:hover + .tooltip-one {
+  display: block;
+} */
+
+.tooltip-one {
+  display: none;
+  padding: 10px;
+  position: absolute;
+  top: -150%;
+  min-width: 150px;
+  width: 300px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.tooltip-one:after {
+  content: "";
+  position: absolute;
+  left: 0px;
+  top: 50%;
+  margin-left: -14px;
+  width: 18px;
+  height: 18px;
+  background-color: inherit;
+  transform: rotate(45deg) translateY(-50%);
+}
+
+.tooltip-one>span {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--light-gray);
+  margin-bottom: 10px;
+  display: block;
+}
+
+.tooltip-one>p {
+  font-size: 1.4rem;
+  color: var(--light-gray);
+}
