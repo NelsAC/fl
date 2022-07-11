@@ -52,6 +52,9 @@ export const PublicationView = ({ post }) => {
     case 'datos':
       courseIcon = 'fa-solid fa-database';
       break;
+    default:
+      courseIcon = 'fa-solid fa-code';
+      break;
   }
 
   const postUser = users.find((user) => user.uid === uid);

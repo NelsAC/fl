@@ -18,7 +18,7 @@ export const CoursesView = () => {
       {
         courses.map(course => (
           <div className="content__curso" key={course.courseId}>
-            <div className="content__curso--main">
+            <div className="content__curso--main" style={{textTransform: 'capitalize'}}>
               <h2>{ course.name }</h2>
               <div className="separacion"></div>
               <p className="content__curso--obj">
