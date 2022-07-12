@@ -3,7 +3,7 @@
 :root {
   --color-primary: #6200ee;
   --color-secondary: #e99401;
-  --light-gray: #e8e8e8;
+  --light-gray: #e2e2e2;
   --dark-gray: #222;
   --dark-blue: #130a1d;
   --dark-red: #de4859;
@@ -15,7 +15,7 @@
 
 html {
   box-sizing: border-box;
-  font-size: 62.5%; /* 1REM = 10px */
+  /* font-size: 62.5%; // 1REM = 10px */
   scroll-behavior: smooth;
 }
 *,
@@ -50,4 +50,26 @@ p {
 
 img {
   max-width: 100%;
+}
+
+path {
+  stroke-width: 1px;
+}
+
+.navigation__body--item.active > p {
+  color: var(--white);
+  font-weight: 500;
+}
+
+.navigation__body--item.active > svg {
+  color: var(--white);
+}
+
+.navigation__body--item.active > svg path {
+  stroke-width: 2px;
+}
+
+.Toastify__toast {
+  font-size: 1rem;
+  background: linear-gradient(to right, var(--color-primary), var(--dark-red));
 }

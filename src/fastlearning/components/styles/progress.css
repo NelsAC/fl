@@ -1,23 +1,18 @@
 .progress__container {
-    height: 56px;
-    border-radius: 8px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 20px;
 }
 
 .progress__advance {
-    color: var(--color-backfunc);
-    font-size: 1.6rem;
-    font-weight: 700;
+    color: var(--light-gray);
+    font-size: 1.05rem;
     margin-bottom: 5px;
 }
 
 .progress__figure {
     background-color: var(--light-gray);
     border-radius: 12px;
-    border: 2px solid var(--color-backfunc);
     width: 100%;
     margin-bottom: 5px;
 }
@@ -25,7 +20,7 @@
     position: relative;
     overflow: hidden;
     border-radius: 8px;
-    height: 25px;
+    height: 20px;
     margin: 3px 5px;
 }
 
@@ -47,8 +42,8 @@
   }
   
   .fa-solid.fa-circle-question {
-    font-size: 1.8rem;
-    color: var(--color-backfunc);
+    font-size: 1rem;
+    color: var(--light-gray);
   }
   
   .fa-solid.fa-circle-question:hover + .tooltip-one {

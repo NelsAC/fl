@@ -5,7 +5,7 @@ export const NothingPublicationView = () => {
   return (
    <div className="content__body--image animate__animated animate__fadeIn">
     <img src={ vacio } alt="nada por mostrar" />
-    <span>No existen publicaciones aún!</span>
+    <span className='nothing'>No existen publicaciones aún!</span>
   </div> 
   )
 }

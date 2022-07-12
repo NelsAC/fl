@@ -1,22 +1,8 @@
-/* .tooltip-container {
-  cursor: pointer;
-  position: relative;
-}
-
-.fa-solid.fa-circle-question {
-  font-size: 1.8rem;
-  color: var(--color-backfunc);
-}
-
-.fa-solid.fa-circle-question:hover + .tooltip-one {
-  display: block;
-} */
-
 .tooltip-one {
   display: none;
   padding: 10px;
   position: absolute;
-  top: -150%;
+  top: -100%;
   min-width: 150px;
   width: 300px;
   border-radius: 5px;
@@ -35,15 +21,15 @@
   transform: rotate(45deg) translateY(-50%);
 }
 
-.tooltip-one>span {
-  font-size: 1.5rem;
+.tooltip-one > span {
+  font-size: 1.1rem;
   font-weight: bold;
-  color: var(--light-gray);
+  color: var(--white);
   margin-bottom: 10px;
   display: block;
 }
 
 .tooltip-one>p {
-  font-size: 1.4rem;
-  color: var(--light-gray);
+  font-size: .9rem;
+  color: var(--white);
 }

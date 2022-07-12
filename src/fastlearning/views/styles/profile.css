@@ -8,7 +8,7 @@
   .form__group--label {
     display: block;
     margin-bottom: 5px;
-    font-size: 1.6rem;
+    font-size: 1.2rem;
     font-weight: 500;
     background: -webkit-linear-gradient(
       90deg,
@@ -26,7 +26,7 @@
     border: none;
     border-bottom: 2px solid #d8d8d8;
     color: var(--color-backfunc);
-    font-size: 1.6rem;
+    font-size: 1rem;
     font-weight: 400;
     display: block;
     width: 100%;
@@ -45,7 +45,7 @@
     margin-top: 20px;
     background-color: var(--color-primary);
     color: var(--white);
-    font-size: 1.6rem;
+    font-size: 1rem;
     font-weight: bold;
     padding: 10px;
     border-radius: 5px;
@@ -64,43 +64,6 @@
     background-position: center;
     background-repeat: no-repeat;
   }
-  
-  /* .modal__content--photo {
-    margin: 30px auto 30px;
-    width: 120px;
-    height: 120px;
-    background: linear-gradient(var(--color-backfunc) 0 0) padding-box,
-      linear-gradient(to right, var(--color-primary), var(--dark-red)) border-box;
-    border: 5px solid transparent;
-    border-radius: 50%;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .photo-user {
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-  
-  .upload {
-    display: none;
-  }
-  
-  .upload-label {
-    width: 25px;
-    height: 23px;
-    text-align: center;
-    background-color: var(--dark-red);
-    border-radius: 50%;
-    position: absolute;
-    cursor: pointer;
-    bottom: 0;
-    left: 50%;
-    transform: translate(-50%, 0);
-    color: var(--light-gray);
-  } */
   
   .modal__content--rol {
     display: flex;

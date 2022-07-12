@@ -1,8 +1,6 @@
 import { useSelector } from 'react-redux';
-import { ToastContainer } from 'react-toastify';
 import { getPostsByWord } from '../../helpers';
 import { useForm } from '../../hooks';
-import 'react-toastify/dist/ReactToastify.css';
 
 import { CheckingAuth } from '../../ui/components/CheckingAuth';
 import { FastLearningLayout } from '../layout/FastLearningLayout';
@@ -55,9 +53,6 @@ export const FastLearningPage = () => {
 
   return (
     <FastLearningLayout>
-      <ToastContainer 
-        theme='dark'
-      />
       <NavBarInicioView search={ search } onInputChange={ onInputChange } />
       <div className="content__body">
         {

@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
+import { SearIcon } from "../../assets/icons";
 import { startLoadingPostsByFilter, unsetCurrentUsersPosts } from "../../store/post";
 import "./styles/navbar.css";
 
@@ -22,20 +23,20 @@ export const NavBarInicioView = ({ search, onInputChange }) => {
       <div className="leftDiv">
       <h1 className="content__header--title">Inicio</h1>
       <div className="searchDiv">
-      <i className="fa-solid fa-magnifying-glass"></i>
-      <input 
-        type="search" 
-        name="search"
-        placeholder="Buscar"
-        className="content__header--search"
-        autoComplete="off"
-        value={ search }
-        onChange={ onInputChange }
-      />
+        <SearIcon />
+        <input 
+          type="search" 
+          name="search"
+          placeholder="Buscar"
+          className="content__header--search"
+          autoComplete="off"
+          value={ search }
+          onChange={ onInputChange }
+        />
       </div>
       </div>
       <div className="content__header--filter">
-        <select             className="content__header--filter-select"
+        <select className="content__header--filter-select"
           onChange={ onSelectInputChange }
         >
           <option value="allPosts">Todas las publicaciones</option>

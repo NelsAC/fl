@@ -164,3 +164,9 @@ a.content__publication:visited{
     display: block;
   }
 }
+
+
+
+span.nothing {
+  font-size: 2rem;
+}

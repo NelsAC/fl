@@ -12,7 +12,8 @@ export const startNewPost = ({ course, title, description }) => {
       title: title.toString().toLowerCase(),
       description: description.toString().toLowerCase(),
       date: new Date().getTime(),
-      uid
+      uid,
+      status: true,
     };
     const newDoc = doc(collection(firebaseDB, `FL2022/fastlearning/posts`));
     newPost.postId = newDoc.id;

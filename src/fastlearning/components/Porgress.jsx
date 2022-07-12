@@ -16,10 +16,12 @@ export const Porgress = () => {
 
   return (
     <div className="progress__container">
-      <div className="progress__advance">{ 5 * countBestAnswer }%</div>
+      <div className="progress__advance">{ 5 * countBestAnswer }%
+      </div>
       <div className="progress__figure">
         <div className="progress__figure--intern">
-          <div className="progress__intern--perc" style={{ width: 5*countBestAnswer + '%' }}></div>
+          {/* <div className="progress__intern--perc" style={{ width: 5*countBestAnswer + '%' }}></div> */}
+          <div className="progress__intern--perc" style={{ width: 5*2 + '%' }}></div>
         </div>
       </div>
       <div className="tooltip-container">

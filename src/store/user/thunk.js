@@ -13,6 +13,7 @@ export const startNewUser = (user) => {
             ...user,
             date: new Date().getTime(),
             rol: 'iniciante',
+            status: true,
         }
         delete newUser.ok;
 
