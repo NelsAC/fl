@@ -1,0 +1,15 @@
+.logout-icon > svg {
+    cursor: pointer;
+    width: 25px;
+    height: 65px;
+    color: var(--light-gray);
+  }
+
+  .logout-icon > svg path {
+    stroke-width: 2px;
+  }
+
+  .logout-icon > svg:hover {
+    color: var(--dark-red);
+    transition: color .2s;
+  }

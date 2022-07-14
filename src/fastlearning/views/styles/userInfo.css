@@ -33,12 +33,12 @@
 
 .modal__data--resumen>span {
     font-weight: bold;
-    font-size: 2.2rem;
+    font-size: var(--text-fl-lg);
     color: var(--color-backfunc);
 }
 
 .modal__data--resumen>p {
-    font-size: 1.7rem;
+    font-size: var(--text-fl-md);
     color: #2d2e30;
 }
 
@@ -48,26 +48,27 @@
 }
 
 .modal__user--name>p {
-    font-size: 2.7rem;
+    font-size: var(--text-fl-md);
     font-weight: bold;
     color: var(--color-backfunc);
 }
 
 .modal__user--name>span {
     display: block;
+    font-size: var(--text-fl-sx);
 }
 
 .register-date {
     margin-top: 5px;
     color: #636363;
-    font-size: 1.5rem;
+    font-size: var(--text-fl-sm);
 }
 
 .modal__user--btn {
     border: none;
     background-color: transparent;
     color: var(--dark-red);
-    font-size: 1.7rem;
+    font-size: var(--text-fl-sx);
     cursor: pointer;
     transition: all 0.3s ease-out;
 }
@@ -78,9 +79,8 @@
 }
 
 .modal__close--userInfo {
-    text-align: center;
     color: var(--dark-gray);
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: bold;
     background-color: #f2f3fb;
     border-radius: 50%;
@@ -90,6 +90,8 @@
     top: 0;
     right: 0;
     cursor: pointer;
+    place-content: center;
+    display: grid;
 }
 
 .modal__close--userInfo:hover {

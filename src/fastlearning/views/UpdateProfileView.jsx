@@ -35,15 +35,18 @@ export const UpdateProfileView = ({ setVisible }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    document.getElementById("modalChild").parentElement.classList.remove("animate__fadeInDown");
+    document.getElementById("modalChild").parentElement.classList.add("animate__backOutUp");
     setFormSubmitted(true)
-
     if ( !isFormValid ) return;
     dispatch( startUpdateNameAndEmail( formState ) );
-    setVisible(false);
+    setTimeout(() => {
+      setVisible(false);
+    }, 500);
   }
 
   return (
-    <>
+    <div id="modalChild">
       <div className="modal__content--rol">
         <RolUser />
       </div>
@@ -96,6 +99,6 @@ export const UpdateProfileView = ({ setVisible }) => {
           </div>
         </form>
       </div>
-    </>
+    </div>
   );
 };

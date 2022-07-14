@@ -22,7 +22,7 @@
 }
 
 .entry-title {
-    font-size: 2rem;
+    font-size: var(--text-fl-md);
     font-weight: bold;
     color: var(--dark-red);
     text-align: center;
@@ -30,7 +30,7 @@
 
 .entry-body {
     line-height: 1.5;
-    font-size: 1.6rem;
+    font-size: var(--text-fl-sx);
     color: var(--dark-red);
     text-align: center;
 }

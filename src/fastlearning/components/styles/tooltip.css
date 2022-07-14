@@ -2,7 +2,7 @@
   display: none;
   padding: 10px;
   position: absolute;
-  top: -100%;
+  top: -60%;
   min-width: 150px;
   width: 300px;
   border-radius: 5px;
@@ -22,7 +22,7 @@
 }
 
 .tooltip-one > span {
-  font-size: 1.1rem;
+  font-size: var(--text-fl-sx);
   font-weight: bold;
   color: var(--white);
   margin-bottom: 10px;
@@ -30,6 +30,6 @@
 }
 
 .tooltip-one>p {
-  font-size: .9rem;
+  font-size: var(--text-fl-sm);
   color: var(--white);
 }

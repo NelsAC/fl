@@ -12,7 +12,7 @@ import logoMobile from '../../assets/images/logomobile.png';
 import { setClearLogoutUser } from '../../store/user';
 import { setClearLogoutPosts } from '../../store/post';
 import { setClearLogoutComments } from '../../store/comment';
-import { CourseIcon, HomeIcon, LogoutIcon, PostIcon, ProfileIcon, UploadIcon } from '../../assets/icons';
+import { CourseIcon, DashIcon, HomeIcon, LogoutIcon, PostIcon, ProfileIcon, UploadIcon } from '../../assets/icons';
 
 const photo = 'https://res.cloudinary.com/dbmqyx6gp/image/upload/v1656033153/fastlearning/photo_ukecoh.png';
 
@@ -106,10 +106,21 @@ export const Sidebar = () => {
               <HomeIcon />
               <p>Inicio</p>
             </NavLink>
-            <span className='navigation__body--item' onClick={ onModalProfile }>
-              <ProfileIcon />
-              <p>Perfil</p>
-            </span>
+            {
+              email === 'admin@gmail.com'
+                ? (
+                  <NavLink className='navigation__body--item' to='/admin'>
+                    <DashIcon />
+                    <p>Dashboard</p>
+                  </NavLink>
+                )
+                : (
+                  <span className='navigation__body--item' onClick={ onModalProfile }>
+                    <ProfileIcon />
+                    <p>Perfil</p>
+                  </span>
+                )
+            }
             <NavLink className='navigation__body--item' to='/cursos'>
               <CourseIcon />
               <p>Cursos</p>

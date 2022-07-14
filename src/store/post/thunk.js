@@ -6,7 +6,7 @@ import { loadPosts } from '../../helpers';
 export const startNewPost = ({ course, title, description }) => {
   return async (dispatch, getState) => {
     const { uid } = getState().auth;
-
+console.log(course);
     const newPost = {
       course,
       title: title.toString().toLowerCase(),

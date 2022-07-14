@@ -7,3 +7,4 @@ export * from './CourseIcon';
 export * from './ProfileIcon';
 export * from './PostIcon';
 export * from './SearchIcon';
+export * from './DashIcon';

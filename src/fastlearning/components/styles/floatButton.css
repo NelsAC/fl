@@ -1,10 +1,9 @@
 .float__button {
     position: fixed;
     padding: 10px 20px;
-    border-radius: 50%;
+    border-radius: 5px;
     background-color: var(--dark-red);
     color: var(--white);
-    font-size: 1.5rem;
     right: 50px;
     top: 20px;
     z-index: 9;
@@ -13,12 +12,17 @@
     align-items: center;
 }
 
+.float__button > span {
+    font-size: var(--text-fl-sx);
+    margin-left: 5px;
+}
+
 .float__button:visited {
     color: var(--white);
 }
 
 .fa-solid.fa-angle-left {
     display: inline-block;
-    font-size: 3rem;
+    font-size: 1.2rem;
     font-weight: bold;
 }

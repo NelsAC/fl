@@ -7,12 +7,16 @@ import { startNewPost } from '../../store/post';
 import './styles/profile.css';
 
 const formData = {
-  course: 'diseño',
   title: '',
   description: '',
+  course: '',
 };
 
 const formValidations = {
+  course: [
+    (value) => value.length > 0, 
+    'Seleccione un curso',
+  ],
   title: [
     (value) => value.length >= 3,
     'El titulo debe tener almenos 3 caracteres.',
@@ -38,6 +42,7 @@ export const NewPostView = ({ setVisible }) => {
     onInputChange,
     formState,
     isFormValid,
+    courseValid,
     titleValid,
     descriptionValid,
   } = useForm(formData, formValidations);
@@ -59,6 +64,11 @@ export const NewPostView = ({ setVisible }) => {
           <label className="form__group--label" htmlFor="course">
             Curso
           </label>
+          {
+            formSubmitted && !!courseValid
+              ? ( <div className="error-message">{courseValid}</div> ) 
+              : null
+          }
           <select
             name="course"
             style={{textTransform: 'capitalize'}}
@@ -66,6 +76,7 @@ export const NewPostView = ({ setVisible }) => {
             value={ course }
             onChange={ onInputChange }
           >
+            <option value="">Seleccione un curso</option>
             {
               courses.map((course) => (
                 <option key={ course.courseId } value={ course.name } style={{textTransform: 'capitalize'}}>

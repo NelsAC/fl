@@ -10,14 +10,13 @@ import { startLoadingAllComments } from '../store/comment';
 
 export const useCheckAuth = () => {
 
-  const { status } = useSelector((state) => state.auth);
-
-  const { loading } = useSelector((state) => state.post);
-
   const dispatch = useDispatch();
 
-  useEffect(() => {
+  const { status } = useSelector((state) => state.auth);
+  const { loading } = useSelector((state) => state.post);
 
+
+  useEffect(() => {
     onAuthStateChanged(firebaseAuth, async (user) => {
       if (!user) return dispatch( logout() );
 

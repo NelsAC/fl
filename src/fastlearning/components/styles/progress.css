@@ -6,7 +6,7 @@
 
 .progress__advance {
     color: var(--light-gray);
-    font-size: 1.05rem;
+    font-size: var(--text-fl-sx);
     margin-bottom: 5px;
 }
 

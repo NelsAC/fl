@@ -11,6 +11,13 @@
   --white: #fff;
   --font-primary: "Outfit", sans-serif;
   --font-secondary: "Roboto", sans-serif;
+  --text-fl-sm: 0.85rem;
+  --text-fl-sx: 1rem;
+  --text-fl-md: 1.2rem;
+  --text-fl-lg: 1.5rem;
+  --text-fl-xl: 2rem;
+  --text-fl-xxl: 2.5rem;
+  --text-fl-xxxl: 3rem;
 }
 
 html {
@@ -27,7 +34,8 @@ body {
   font-family: var(--font-primary);
   font-size: 1.6rem;
   line-height: 1.4;
-  background-color: var(--light-gray);
+  /* background-color: var(--light-gray); */
+  background: url(./assets/images/bgForo.jpg);
 }
 
 a {
@@ -56,13 +64,18 @@ path {
   stroke-width: 1px;
 }
 
+.aside__admin {
+  background-color: var(--color-backfunc);
+  color: #a3a3a3;
+}
+
 .navigation__body--item.active > p {
-  color: var(--white);
-  font-weight: 500;
+  color: var(--color-secondary);
+  font-weight:400;
 }
 
 .navigation__body--item.active > svg {
-  color: var(--white);
+  color: var(--color-secondary);
 }
 
 .navigation__body--item.active > svg path {
@@ -72,4 +85,114 @@ path {
 .Toastify__toast {
   font-size: 1rem;
   background: linear-gradient(to right, var(--color-primary), var(--dark-red));
+}
+
+.navigation__admin {
+  background-color: var(--white);
+}
+
+.title__admin {
+  background: -webkit-linear-gradient(90deg,var(--color-primary),var(--dark-red));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.main__admin {
+  background-color: #e8e8e8;
+}
+
+.subtitle__admin {
+  background: -webkit-linear-gradient(180deg,var(--color-primary),var(--dark-red));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.nav__admin {
+  background-color: var(--color-backfunc);
+}
+
+.btn__admin {
+  background-color: var(--color-primary);
+}
+
+.btn-action {
+  cursor: pointer;
+}
+
+.holaprueba {
+  display: none;
+  position: absolute;
+  left: 0;
+  cursor: pointer;
+}
+
+.holaprueba:hover {
+  text-decoration: underline;
+}
+
+.btn-action:hover + .holaprueba, .holaprueba:hover {
+  display: block;
+}
+
+.pdfButton {
+  background: linear-gradient(to right, var(--dark-red), var(--color-secondary));
+  color: #fff; 
+  font-weight: semi-bold; 
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.pdfButton:hover {
+  transform: scale(1.05);
+}
+
+a.link__admin.active{
+  padding-left: 10px;
+  color: var(--white);
+  animation: moveRight 0.2s ease-out;
+}
+
+a.link__admin.active::before{
+  content: "";
+  width: 5px;
+  height: 30px;
+  left: -1px;
+  background-color: var(--color-primary);
+  position: absolute;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes moveRight {
+  from {
+    padding-left: 0;
+  }
+  to {
+    padding-left: 8px;
+  }
+}
+
+.dashboard__admin {
+  background-color: var(--color-backfunc);
+}
+
+.content__dashboard {
+  background: url(./assets/images/bgForo.jpg);
+  border-radius: 25px;
+  width: 88%;
+  margin: 20px auto 0;
+  min-height: 100vh;
 }

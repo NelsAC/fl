@@ -11,7 +11,7 @@
 .header__mobile--rol > p {
   color: var(--light-gray);
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: var(--text-fl-sx);
 }
 
 svg {

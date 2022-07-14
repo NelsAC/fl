@@ -21,7 +21,8 @@
   width: 99%;
   margin: 0 auto 35px;
   display: block;
-  background-color: #efefef;
+  background-color: rgba(255, 255, 255, .8);
+  backdrop-filter: blur(10px);
   border-radius: 10px;
   padding: 5px 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -36,7 +37,7 @@
 @media ( min-width: 768px ) {
   .content__publication {
     width: 90%;  
-  padding: 20px 30px;
+    padding: 20px 30px;
   }
 }
 
@@ -49,7 +50,7 @@ a.content__publication:visited{
 }
 
 .content__publication--title {
-  font-size: 1.8rem;
+  font-size: var(--text-fl-md);
   font-weight: bold;
   margin-bottom: 10px;
   background: -webkit-linear-gradient(
@@ -67,7 +68,7 @@ a.content__publication:visited{
 }
 
 .content__publication--description {
-  font-size: 1.4rem;
+  font-size: var(--text-fl-sm);
   font-weight: 400;
   color: var(--color-backfunc);
   margin-bottom: 10px;
@@ -145,7 +146,8 @@ a.content__publication:visited{
   }
 
   .content__publication--description {
-    font-size: 1.5rem;
+    font-size: var(--text-fl-sx);
+    color: #000;
   }
 
   .publication__info--curso,
@@ -153,7 +155,8 @@ a.content__publication:visited{
   .publication__info--time,
   .publication__info--user {
     padding: 12px;
-    font-size: 1.6rem;
+    font-size: 0.9rem;
+    color: rgb(32, 32, 32);
   }
 
   .publication__info--curso {
