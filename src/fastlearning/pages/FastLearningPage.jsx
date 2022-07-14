@@ -47,13 +47,15 @@ export const FastLearningPage = () => {
   }
   filteredPostsAll.sort(sort);
 
+  const setActivePosts = filteredPostsAll.filter( (post) => !!post.status );
+
   return (
     <FastLearningLayout>
       <NavBarInicioView search={ search } onInputChange={ onInputChange } />
       <div className="content__body">
         {
-          ( filteredPostsAll.length > 0 )
-            ? ( filteredPostsAll.map((post) => 
+          ( setActivePosts.length > 0 )
+            ? ( setActivePosts.map((post) => 
                 <PublicationView 
                   key={post.postId} 
                   post={post} 
