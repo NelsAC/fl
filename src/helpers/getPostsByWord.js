@@ -1,6 +1,6 @@
 
 
-export const getPostsByWord = ( posts= [], word = '' ) => {
+export const getPostsByWord = ( posts = [], word = '' ) => {
     word = word.toLowerCase().trim();
 
     if ( word.length === 0 ) return posts;

@@ -52,6 +52,13 @@ export const postSlice = createSlice({
       state.loading = true;
       state.active = null;
       state.currentUserPosts = null;
+    },
+    setUpdateStatusPost: (state, actions) => {
+      state.posts.forEach((post) => {
+        if (post.id === actions.payload) {
+          post.status = !post.status;
+        }
+      })
     }
   },
 });
@@ -67,4 +74,5 @@ export const {
   setCurrentUserPosts,
   unsetCurrentUsersPosts,
   setClearLogoutPosts,
+  setUpdateStatusPost
 } = postSlice.actions;

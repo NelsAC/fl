@@ -15,7 +15,7 @@ import { toast } from 'react-toastify';
 export const startSaveComment = ({ commentDescription }) => {
   return async (dispatch, getState) => {
     dispatch(setSaving());
-
+    
     const { active: post } = getState().post;
 
     const { uid } = getState().auth;
@@ -28,18 +28,14 @@ export const startSaveComment = ({ commentDescription }) => {
       best: false,
       likes: [],
     };
-
+    
     const newDoc = doc(
       collection(firebaseDB, `FL2022/fastlearning/comments`)
-    );
-    newComment.commentId = newDoc.id;
+      );
+      newComment.commentId = newDoc.id;
+      await setDoc(newDoc, newComment);
 
-    await toast.promise( 
-      setDoc(newDoc, newComment),
-      {
-        pending: 'Agregando comentario..',
-        success: 'Comentario agregado 😀',
-      });
+      toast.success('Comentario agregado');
 
     dispatch(addNewComment(newComment));
   };
@@ -91,15 +87,13 @@ export const startLikeComment = (commentId) => {
       firebaseDB, 
       `FL2022/fastlearning/comments/${commentId}`
     );
-    await setDoc(docRef, { likes: commentLikeArray }, { merge: true });
-
     const data = {
       commentLikeArray,
       commentId,
-    } 
-
+    }
+    
     dispatch( setLikes(data) );
-
+    await setDoc(docRef, { likes: commentLikeArray }, { merge: true });
 }}
 
 export const startUnLikeComment = (commentId) => {
@@ -116,14 +110,13 @@ export const startUnLikeComment = (commentId) => {
       firebaseDB, 
       `FL2022/fastlearning/comments/${commentId}`
     );
-    await setDoc(docRef, { likes: commentLikeArray }, { merge: true });
-
     const data = {
       commentLikeArray,
       commentId,
     }
 
     dispatch( setLikes(data) );
+    await setDoc(docRef, { likes: commentLikeArray }, { merge: true });
 }}
 
 
@@ -134,6 +127,11 @@ export const startBestComment = (commentId) => {
     const { activeComments } = getState().comment;
 
     const comment = activeComments.find((comment) => comment.best === true);
+
+    const data = {
+      commentId,
+    }
+    dispatch( setBestComment(data) );
 
     if ( comment !== undefined ) {
       const docRef = doc(
@@ -148,10 +146,5 @@ export const startBestComment = (commentId) => {
       `FL2022/fastlearning/comments/${commentId}`
     );
     await setDoc(docRef, { best: true }, { merge: true });
-
-    const data = {
-      commentId,
-    }
-    dispatch( setBestComment(data) );
     dispatch( startGetBestAnswers() );
 }}

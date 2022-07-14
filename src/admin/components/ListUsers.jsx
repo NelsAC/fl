@@ -5,8 +5,8 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import jsPDF from "jspdf";
-import { startUpdateUser } from "../../store/admin";
 import { NavBar } from "./NavBar";
+import { startUpdateUser } from "../../store/user";
 
 export const ListUsers = () => {
 

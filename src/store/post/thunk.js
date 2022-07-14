@@ -1,12 +1,12 @@
 import { doc, collection, setDoc } from 'firebase/firestore/lite';
 import { firebaseDB } from '../../firebase/config';
-import { addNewEmptyPost, setCurrentUserPosts, setPosts } from './postSlice';
+import { addNewEmptyPost, setCurrentUserPosts, setPosts, setUpdateStatusPost } from './postSlice';
 import { loadPosts } from '../../helpers';
+import { toast } from 'react-toastify';
 
 export const startNewPost = ({ course, title, description }) => {
   return async (dispatch, getState) => {
     const { uid } = getState().auth;
-console.log(course);
     const newPost = {
       course,
       title: title.toString().toLowerCase(),
@@ -40,5 +40,20 @@ export const startLoadingPostsByFilter = (uid) => {
     });
     dispatch(setCurrentUserPosts(filteredPosts));
   }
+}
 
+//admin
+
+export const startUpdateForum = (id) => {
+  return async (dispatch, getState) => {
+
+    const { posts } = getState().post;
+    const post = posts.find(post => post.postId === id);
+    
+    dispatch( setUpdateStatusPost(id) );
+    toast.success('Post actualizado con éxito');
+
+    const docRef = doc(firebaseDB, `FL2022/fastlearning/posts/${id}`);
+    await setDoc(docRef, { status: !post.status }, { merge: true });
+  }
 }

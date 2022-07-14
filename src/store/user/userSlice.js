@@ -16,6 +16,9 @@ export const userSlice = createSlice({
     addNewUser: (state, actions) => {
       state.users.push(actions.payload);
     },
+    addNewCourse: (state, actions) => {
+      state.courses.push(actions.payload);
+    },
     setActiveUser: (state, actions) => {
       state.active = actions.payload;
       state.loadingUserActive = false;
@@ -38,6 +41,37 @@ export const userSlice = createSlice({
     },
     setCourses: (state, actions) => {
       state.courses = actions.payload;
+    },
+    setUpdatePhotoUser: (state, actions) => {
+      state.users.forEach((user) => {
+        if (user.uid === actions.payload.uid) {
+          user.photoURL = actions.payload.photoURL;
+        }
+      })
+    },
+    setUpdateNameAndEmailUser: (state, actions) => {
+      state.users.forEach((user) => {
+        if (user.uid === actions.payload.uid) {
+          user.displayName = actions.payload.displayName;
+          user.email = actions.payload.email;
+        }
+      })
+    },
+    setUpdateStatusUser: (state, actions) => {
+      state.users.forEach((user) => {
+        if (user.userId === actions.payload) {
+          user.status = !user.status;
+        }
+      })
+    },
+    setUpdateCourse: (state, actions) => {
+      state.courses.forEach((course) => {
+        if (course.courseId === actions.payload.courseId) {
+          course.name = actions.payload.name;
+          course.description = actions.payload.description;
+          course.category = actions.payload.category;
+        }
+      })
     }
   },
 });
@@ -49,5 +83,10 @@ export const {
     setUsers,
     setClearLogoutUser,
     setCountBestAnswer,
-    setCourses
+    setCourses,
+    setUpdatePhotoUser,
+    setUpdateNameAndEmailUser,
+    setUpdateStatusUser,
+    addNewCourse,
+    setUpdateCourse
 } = userSlice.actions;

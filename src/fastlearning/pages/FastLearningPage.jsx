@@ -19,18 +19,14 @@ const initialState = {
 export const FastLearningPage = () => {
 
   const { loading, posts, currentUserPosts } = useSelector( (state) => state.post );
-
   const { loadingUsers } = useSelector( (state) => state.user );
-
   const { loadingAllComments } = useSelector( (state) => state.comment );
+
 
   const { search, onInputChange } = useForm(initialState);
 
-
   const filteredPosts = getPostsByWord( posts, search );
-
   let filteredPostsAll = [];
-  
 
   if ( !!loading || !!loadingUsers || !!loadingAllComments ) {
     return <CheckingAuth />;

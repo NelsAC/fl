@@ -8,7 +8,7 @@ import {
 } from '../../firebase/providers';
 import { fileUpload } from '../../helpers';
 import { loadRegisteredUsers } from '../../helpers/loadRegisteredUsers';
-import { startUpdateNameAndEmailUser, setUsers, startLoadingActiveUser, startNewUser, startUpdatePhotoURLUser } from '../user';
+import { startUpdateNameAndEmailUser, startNewUser, startUpdatePhotoURLUser } from '../user';
 import {
   checkingCredentials,
   login,
@@ -32,22 +32,13 @@ export const startGoogleSignIn = () => {
 
     const registeredUsers = await loadRegisteredUsers();
 
-    if ( registeredUsers.length > 0 ) {
-      
-      const stateAcc = registeredUsers.some( user => user.uid === result.uid );
+    const user = registeredUsers.find((user) => user.uid === result.uid);
 
-      if ( stateAcc === false ) {
-        dispatch(startNewUser(result));
-        dispatch(startLoadingActiveUser(result.uid));
-      }
-
-    } else {
-      dispatch(startNewUser(result));
+    if (!user) {
+      return dispatch( startNewUser(result) );
     }
     
-    dispatch(setUsers(registeredUsers));
-    dispatch(login(result));
-    dispatch(startLoadingActiveUser(result.uid));
+    return dispatch( login(user) );
   };
 };
 
@@ -55,7 +46,7 @@ export const startCreatingUserWithEmailAndPassword = ({
   name,
   lastName,
   email,
-  password,
+  password
 }) => {
   return async (dispatch) => {
     dispatch(checkingCredentials());
@@ -66,20 +57,13 @@ export const startCreatingUserWithEmailAndPassword = ({
     
     const registeredUsers = await loadRegisteredUsers();
 
-    if ( registeredUsers.length > 0 ) {
-      const stateAcc = registeredUsers.some( user => user.uid === result.uid );
+    const user = registeredUsers.find((user) => user.uid === result.uid);
 
-      if ( stateAcc === false ) {
-        dispatch(startNewUser(result));
-        dispatch(startLoadingActiveUser(result.uid));
-      }
-    } else {
-      dispatch(startNewUser(result));
+    if (!user) {
+      return dispatch( startNewUser(result) );
     }
 
-    dispatch(setUsers(registeredUsers));
-    dispatch(login(result));
-    dispatch(startLoadingActiveUser(result.uid));
+    return dispatch( login(user) );
   };
 };
 
@@ -112,7 +96,7 @@ export const startUpdatePhotoURL = (files = []) => {
     dispatch( setUpdatePhoto(result) );
 
     //actualizar photo en la bd
-    dispatch( startUpdatePhotoURLUser() ); 
+    dispatch( startUpdatePhotoURLUser(result.photoURL) );
   };
 };
 
@@ -128,7 +112,7 @@ export const startUpdateNameAndEmail = ({ name, email }) => {
     dispatch( setUpdateNameAndEmail(result) );
     
     //actualizar datos en la bd
-    dispatch( startUpdateNameAndEmailUser() );
+    dispatch( startUpdateNameAndEmailUser({ name, email }) );
 
   };
-};
+}

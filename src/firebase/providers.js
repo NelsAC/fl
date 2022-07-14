@@ -24,7 +24,6 @@ export const signInWithGoogle = async () => {
       uid,
     };
   } catch (error) {
-    // Handle Errors here.
     const errorCode = error.code;
     const errorMessage = error.message;
 
@@ -52,7 +51,7 @@ export const registerWithEmailAndPassword = async ({
 
     await updateProfile(firebaseAuth.currentUser, {
       displayName: `${name} ${lastName}`,
-      photoURL: photoURL,
+      photoURL
     });
 
     return {
@@ -60,11 +59,13 @@ export const registerWithEmailAndPassword = async ({
       uid,
       photoURL,
       email,
-      displayName: `${name} ${lastName}`,
+      displayName: `${name} ${lastName}`
     };
   } catch (error) {
     const errorCode = error.code;
     const errorMessage = error.message;
+
+    console.log(errorMessage);
 
     return {
       ok: false,
@@ -93,6 +94,8 @@ export const signInWithEmailPassword = async ({ email, password }) => {
   } catch (error) {
     const errorCode = error.code;
     const errorMessage = error.message;
+
+    console.log(errorMessage);
 
     return {
       ok: false,

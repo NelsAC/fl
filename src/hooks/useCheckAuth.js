@@ -5,7 +5,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { firebaseAuth } from '../firebase/config';
 import { login, logout } from '../store/auth';
 import { startLoadingPosts } from '../store/post';
-import { startLoadingActiveUser, startLoadingCourses, startLoadingUsers } from '../store/user';
+import { startLoadingCourses, startLoadingUsers } from '../store/user';
 import { startLoadingAllComments } from '../store/comment';
 
 export const useCheckAuth = () => {
@@ -27,7 +27,6 @@ export const useCheckAuth = () => {
         photoURL 
       } = user;
       dispatch( login({ uid, email, displayName, photoURL }) );
-      dispatch( startLoadingActiveUser(uid) );
       dispatch( startLoadingAllComments() );
       dispatch( startLoadingUsers() );
       dispatch( startLoadingPosts() );

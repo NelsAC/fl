@@ -65,25 +65,16 @@ export const ListCourses = () => {
                   <tbody className="bg-white tBodyListCourse">
                     {courses.map((course) => (
                       <tr key={course.courseId}>
-                        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 whitespace-nowrap p-4 w-4/12 font-semibold text-sm text-purple-700">
-                          {course.name}
-                        </td>
+                          <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 whitespace-nowrap p-4 w-4/12 font-semibold text-sm text-purple-700">
+                        <Link to={`/admin/updateCourse/${course.courseId}`}>
+                            {course.name}
+                        </Link>
+                          </td>
                         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 whitespace-nowrap p-4 w-4/12 text-sm">
                           {course.description}
                         </td>
                         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 whitespace-nowrap p-4 w-4/12 text-sm">
                           {course.category}
-                        </td>
-                        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
-                          <div className="text-blueGray-500 block py-1 px-3 btn-action">
-                            <i className="fas fa-ellipsis-v text-xl"></i>
-                          </div>
-                          <Link
-                            to={`/updateCourse/${course.courseId}`}
-                            className="bg-gray-100 text-base z-50 float-left py-2 px-4 list-none text-left rounded shadow-lg min-w-48 holaprueba"
-                          >
-                            Actualizar
-                          </Link>
                         </td>
                       </tr>
                     ))}
