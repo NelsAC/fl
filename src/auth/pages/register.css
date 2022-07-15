@@ -65,7 +65,7 @@
   .input-email {
     margin-bottom: 22px;
   }
-  .primary-button {
+  [type=submit].primary-button {
     background-color: var(--color-secondary);
     border-radius: 8px;
     border: none;
