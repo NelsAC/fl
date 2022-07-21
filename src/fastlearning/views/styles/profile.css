@@ -41,7 +41,7 @@
     display: flex;
     justify-content: flex-end;
   }
-  .form__submit--btn {
+  a.btn.form__submit--btn {
     margin-top: 20px;
     background-color: var(--color-primary);
     color: var(--white);
@@ -54,7 +54,7 @@
     transition: filter 0.2s ease;
   }
   
-  .form__submit--btn:hover {
+  a.btn.form__submit--btn:hover {
     filter: brightness(80%);
   }
 
